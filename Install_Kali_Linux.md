@@ -102,6 +102,9 @@
      ```bash
      nmap -sV 192.168.1.1
      ```
+     ```bash
+     nmap -sV scanme.nmap.org
+     ```
 
 ---
 
@@ -119,6 +122,9 @@
    set RHOSTS <target_IP>
    ```
    - Ganti `<target_IP>` dengan alamat IP target.
+  ```bash
+  set RHOSTS scanme.nmap.org
+  ```
 4. Jalankan exploit:
    ```bash
    exploit
