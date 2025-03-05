@@ -182,3 +182,120 @@
 - **Kali Linux Docker Image**: [https://hub.docker.com/r/kalilinux/kali-rolling](https://hub.docker.com/r/kalilinux/kali-rolling)
 - **Nmap Documentation**: [https://nmap.org/book/man.html](https://nmap.org/book/man.html)
 - **Metasploit Documentation**: [https://docs.rapid7.com/metasploit/](https://docs.rapid7.com/metasploit/)
+
+---
+
+# **Hands-On: Kali Linux dengan WSL**
+
+### **1. Instalasi Kali Linux di WSL 2**
+
+#### **Langkah 1: Aktifkan WSL 2 di Windows**
+1. Buka PowerShell sebagai Administrator.
+2. Jalankan perintah berikut untuk mengaktifkan WSL:
+   ```powershell
+   wsl --install
+   ```
+   - Perintah ini akan menginstal WSL dan distribusi Linux default (biasanya Ubuntu).
+3. Jika WSL sudah terinstal, pastikan versi WSL adalah **WSL 2**:
+   ```powershell
+   wsl --set-default-version 2
+   ```
+4. Restart komputer Anda jika diminta.
+
+---
+
+#### **Langkah 2: Instal Kali Linux di WSL 2**
+1. Buka **Microsoft Store** di Windows.
+2. Cari "Kali Linux" di Microsoft Store.
+3. Klik **Install** untuk mengunduh dan menginstal Kali Linux.
+4. Setelah instalasi selesai, buka Kali Linux dari Start Menu.
+
+---
+
+#### **Langkah 3: Konfigurasi Kali Linux di WSL 2**
+1. Saat pertama kali membuka Kali Linux, Anda akan diminta membuat username dan password.
+2. Update sistem Kali Linux:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+3. Instal tools yang diperlukan, misalnya `nmap` dan `metasploit-framework`:
+   ```bash
+   sudo apt install nmap metasploit-framework -y
+   ```
+
+---
+
+### **2. Simulasi Dasar Serangan Menggunakan Terminal Kali Linux di WSL**
+
+#### **Contoh 1: Nmap Scanning**
+1. Jalankan perintah `nmap` untuk memindai port pada target:
+   ```bash
+   nmap -sV <target_IP>
+   ```
+   - Ganti `<target_IP>` dengan alamat IP target yang ingin Anda pindai.
+   - Contoh:
+     ```bash
+     nmap -sV 192.168.1.1
+     ```
+
+---
+
+#### **Contoh 2: Metasploit Framework**
+1. Buka Metasploit Framework:
+   ```bash
+   msfconsole
+   ```
+2. Cari dan gunakan exploit, misalnya `ms17_010_eternalblue`:
+   ```bash
+   use exploit/windows/smb/ms17_010_eternalblue
+   ```
+3. Set target IP:
+   ```bash
+   set RHOSTS <target_IP>
+   ```
+   - Ganti `<target_IP>` dengan alamat IP target.
+4. Jalankan exploit:
+   ```bash
+   exploit
+   ```
+
+---
+
+### **3. Integrasi WSL dengan Windows**
+- **Akses File Windows dari WSL**:  
+  Anda dapat mengakses file Windows dari WSL melalui direktori `/mnt/`. Misalnya, drive `C:` di Windows dapat diakses di WSL melalui `/mnt/c/`.
+
+- **Akses WSL dari Windows**:  
+  Anda dapat mengakses file WSL dari Windows dengan membuka direktori berikut di File Explorer:
+  ```
+  \\wsl$\Kali-Linux\home\<username>
+  ```
+
+---
+
+### **4. Menghapus Kali Linux dari WSL**
+1. Buka PowerShell sebagai Administrator.
+2. Cari daftar distribusi WSL yang terinstal:
+   ```powershell
+   wsl --list
+   ```
+3. Hapus distribusi Kali Linux:
+   ```powershell
+   wsl --unregister Kali-Linux
+   ```
+
+---
+
+### **Keuntungan Menggunakan Kali Linux dengan WSL 2**
+- **Ringan**: Tidak memerlukan virtual machine atau dual boot.
+- **Integrasi dengan Windows**: Dapat mengakses file dan sistem Windows dengan mudah.
+- **Performansi Tinggi**: WSL 2 menggunakan kernel Linux yang dioptimalkan untuk Windows.
+- **Portabel**: Dapat digunakan bersamaan dengan aplikasi Windows lainnya.
+
+---
+
+### **Referensi:**
+- **WSL Documentation**: [https://docs.microsoft.com/en-us/windows/wsl/](https://docs.microsoft.com/en-us/windows/wsl/)
+- **Kali Linux WSL Guide**: [https://www.kali.org/docs/wsl/](https://www.kali.org/docs/wsl/)
+- **Nmap Documentation**: [https://nmap.org/book/man.html](https://nmap.org/book/man.html)
+- **Metasploit Documentation**: [https://docs.rapid7.com/metasploit/](https://docs.rapid7.com/metasploit/)
