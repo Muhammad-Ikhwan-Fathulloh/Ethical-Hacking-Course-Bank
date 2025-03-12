@@ -178,6 +178,15 @@ cd myfolder
 # Buat file baru
 touch file.txt
 
+# Update Package List
+apt update
+
+# Add Nano
+apt install nano
+
+# View Version nano
+nano --version
+
 # Edit file dengan nano
 nano file.txt
   - Tekan `Ctrl + X` untuk keluar, `Y` untuk menyimpan.
