@@ -242,6 +242,10 @@ grep -r "keyword" /path/to/directory
 
 #### e. Menggunakan `sudo`
 ```bash
+# Install Sudo
+apt update
+apt install sudo
+
 # Update daftar paket
 sudo apt update
 
