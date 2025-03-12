@@ -205,6 +205,16 @@ rm -r myfolder
 ```
 
 #### c. Mengelola Izin File
+
+| Mode        | Deskripsi                                                                                     | Contoh                   | Izin                                            |
+|:------------|:----------------------------------------------------------------------------------------------|:-------------------------|:------------------------------------------------|
+| `chmod 777` | Memberikan akses penuh (baca, tulis, jalankan) kepada semua orang                             | `chmod 777 file.txt`     | Pemilik: rwx <br> Grup: rwx <br> Lain-lain: rwx |
+| `chmod 755` | Memberikan akses penuh kepada pemilik, dan akses baca dan jalankan kepada grup dan lain-lain  | `chmod 755 script.sh`    | Pemilik: rwx <br> Grup: r-x <br> Lain-lain: r-x |
+| `chmod 644` | Memberikan akses baca dan tulis kepada pemilik, dan akses baca saja kepada grup dan lain-lain | `chmod 644 document.pdf` | Pemilik: rw- <br> Grup: r-- <br> Lain-lain: r-- |
+| `chmod 600` | Memberikan akses baca dan tulis hanya kepada pemilik                                          | `chmod 600 private.key`  | Pemilik: rw- <br> Grup: --- <br> Lain-lain: --- |
+| `chmod +x`  | Menambahkan izin jalankan ke file                                                             | `chmod +x script.sh`     | Menambahkan izin jalankan untuk semua           |
+| `chmod -w`  | Menghapus izin tulis dari file                                                                | `chmod -w file.txt`      | Menghapus izin tulis untuk semua                |
+
 ```bash
 # Lihat izin file
 ls -l file.txt
