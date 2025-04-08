@@ -47,7 +47,9 @@ cd Hackable-Pentest
 
 ---
 
-## 📄 Format Laporan
+## 📄 Format Laporan 
+
+- Link Docs: https://docs.google.com/document/d/1IdDiTnkZXfCdaSkzwwehaL7J7tmqYKuIYuK7xl6wIBg/edit?usp=sharing
 
 **Judul:** Laporan Uji Keamanan Aplikasi Hackable Nuxt  
 **Nama:** [Nama Mahasiswa]  
