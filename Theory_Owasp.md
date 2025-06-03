@@ -1,5 +1,7 @@
 # 🛡️ OWASP Top 10: 2021
 
+![mapping](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
+
 | Kode         | Nama                                           | Penjelasan                                                                                                                                                        |
 | ------------ | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **A01:2021** | **Broken Access Control**                      | Peringkat naik dari posisi ke-5. 94% aplikasi diuji memiliki celah kontrol akses. 34 CWE terkait Broken Access Control memiliki jumlah kemunculan terbanyak.      |
