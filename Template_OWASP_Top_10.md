@@ -1,7 +1,5 @@
 # Pengantar Template Laporan Pentest OWASP Top 10
 
----
-
 Dokumen ini menyediakan **template laporan *penetration testing* (pentest)** yang berfokus pada kerentanan **OWASP Top 10**. Template ini dirancang untuk membantu Anda menyusun laporan pentest yang komprehensif, terstruktur, dan mudah dipahami, sesuai dengan standar keamanan yang diakui secara global.
 
 Template ini mencakup bagian-bagian penting yang diperlukan dalam laporan pentest, mulai dari ringkasan eksekutif hingga detail temuan dan rekomendasi perbaikan. Setiap bagian dirancang untuk memberikan informasi yang jelas dan relevan bagi berbagai pemangku kepentingan, dari manajemen hingga tim teknis.
