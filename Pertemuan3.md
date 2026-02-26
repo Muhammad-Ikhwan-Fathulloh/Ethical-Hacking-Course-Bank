@@ -1,50 +1,111 @@
-# Pertemuan 3: Passive & Active Reconnaissance (Footprinting)
+# 🛡️ Pertemuan 3: Passive & Active Reconnaissance (Footprinting)
 
-## Tujuan
-Memahami dan menguasai teknik pengumpulan informasi tentang target sebelum melakukan serangan melalui passive dan active reconnaissance.
-
----
-## Materi Teori
-
-### 1. OSINT (Open Source Intelligence)
-OSINT adalah teknik pengumpulan informasi menggunakan sumber daya yang tersedia secara publik, seperti situs web, media sosial, basis data, dan forum.
-
-### 2. WHOIS Lookup, DNS Enumeration, Google Dorking
-- **WHOIS Lookup**: Digunakan untuk mendapatkan informasi domain seperti pemilik, kontak, dan server names.
-- **DNS Enumeration**: Proses mendapatkan informasi tentang infrastruktur DNS suatu target, seperti subdomain dan rekaman DNS.
-- **Google Dorking**: Memanfaatkan pencarian Google dengan operator khusus untuk menemukan informasi sensitif yang tidak diindeks dengan baik.
-
-### 3. Passive vs. Active Reconnaissance
-- **Passive Reconnaissance**: Mengumpulkan informasi tanpa melakukan interaksi langsung dengan target, misalnya melalui OSINT dan metadata.
-- **Active Reconnaissance**: Melibatkan interaksi langsung dengan sistem target, seperti melakukan scanning port dan enumerasi layanan.
-
-### 4. Email Harvesting & Metadata Extraction
-- **Email Harvesting**: Teknik mengumpulkan alamat email target menggunakan alat seperti theHarvester atau pencarian OSINT.
-- **Metadata Extraction**: Mengekstrak informasi dari dokumen atau gambar yang dapat memberikan wawasan tentang sistem dan individu terkait.
+**Tujuan:** Menguasai teknik pengumpulan informasi target secara mendalam menggunakan metodologi OSINT dan alat reconnaissance aktif untuk membangun profil target yang komprehensif.
 
 ---
-## Hands-on
 
-### 1. Menggunakan Shodan, Maltego, dan Recon-ng
-- **Shodan**: Mesin pencari untuk menemukan perangkat yang terhubung ke internet.
-- **Maltego**: Alat visualisasi untuk hubungan data OSINT.
-- **Recon-ng**: Framework reconnaissance yang dapat mengotomatisasi pengumpulan informasi.
+## 📚 Materi Teori
 
-### 2. WHOIS Lookup & DNS Enumeration dengan nslookup dan dig
-- **WHOIS Lookup**:
-  ```bash
-  whois example.com
-  ```
-- **DNS Enumeration dengan nslookup**:
-  ```bash
-  nslookup -type=any example.com
-  ```
-- **DNS Enumeration dengan dig**:
-  ```bash
-  dig example.com any
-  ```
+### 1. OSINT Framework & Metodologi
+OSINT (Open Source Intelligence) adalah data yang dikumpulkan dari sumber terbuka. Framework OSINT membantu hacker mengategorikan pencarian berdasarkan:
+- **Username**: Mencari akun di berbagai platform (misal: Sherlock).
+- **Email Address**: Mencari kebocoran data (HaveIBeenPwned).
+- **Domain Name**: Enumerasi subdomain dan sertifikat SSL.
+- **IP Address**: Mencari lokasi fisik dan hosting provider.
+
+### 2. Google Dorking (Advanced Search)
+Teknik menggunakan operator khusus untuk menemukan informasi yang tidak sengaja terekspos.
+
+| Operator    | Fungsi                             | Contoh                         |
+| ----------- | ---------------------------------- | ------------------------------ |
+| `site:`     | Membatasi hasil ke domain tertentu | `site:target.com`              |
+| `filetype:` | Mencari ekstensi file spesifik     | `site:target.com filetype:pdf` |
+| `intitle:`  | Mencari kata di judul halaman      | `intitle:"index of"`           |
+| `inurl:`    | Mencari kata di URL                | `inurl:admin.php`              |
+| `"text"`    | Mencari frase eksak                | `"password list"`              |
+
+**Contoh Dork Populer**:
+- Menemukan direktori terbuka: `intitle:"index of" "parent directory"`
+- Menemukan file log: `filetype:log "error"`
+- Menemukan file konfigurasi: `extension:config inurl:web.config`
+
+### 3. DNS Deep Dive (Enumeration)
+Sistem Nama Domain menyimpan banyak informasi infrastruktur. Record penting yang harus diperiksa:
+- **A Record**: Memetakan domain ke alamat IPv4.
+- **AAAA Record**: Memetakan domain ke alamat IPv6.
+- **MX Record**: Menunjukkan mail server (berguna untuk email harvesting).
+- **TXT Record**: Sering berisi informasi verifikasi (SPF, DKIM) yang membocorkan layanan pihak ketiga.
+- **NS Record**: Authoritative name servers untuk domain tersebut.
+
+### 4. Alur Kerja Reconnaissance
+
+```mermaid
+graph TD
+    A[Start Reconnaissance] --> B{Pilih Metode}
+    B -->|Passive| C[OSINT & Public Records]
+    B -->|Active| D[Direct Interaction]
+    
+    C --> C1[Google Dorking]
+    C --> C2[WHOIS & DNS Dig]
+    C --> C3[Email Harvesting]
+    
+    D --> D1[Port Scanning]
+    D --> D2[Service Enumeration]
+    
+    C1 & C2 & C3 & D1 & D2 --> E[Consolidate Information]
+    E --> F[Vulnerability Identification]
+```
 
 ---
-## Referensi
+
+## 🛠️ Hands-on
+
+### 1. Email Harvesting dengan `theHarvester`
+Alat ini mengumpulkan email, subdomain, dan IP dari berbagai public data sources (Google, Bing, LinkedIn).
+```bash
+# Mencari email dan subdomain dari Google untuk target.com
+theHarvester -d target.com -b google -l 500
+```
+
+### 2. Metadata Extraction dengan `Exiftool`
+Metadata dalam gambar atau dokumen dapat membocorkan versi software, koordinat GPS, hingga username pembuat file.
+```bash
+# Melihat metadata file gambar
+exiftool sample_image.jpg
+
+# Menghapus seluruh metadata (Anti-forensics)
+exiftool -all= sample_image.jpg
+```
+
+### 3. Advanced DNS Recon dengan `dig`
+```bash
+# Menampilkan seluruh record DNS target
+dig target.com ANY
+
+# Mencari tahu mail server target
+dig target.com MX
+```
+
+### 4. Shodan Query Filters
+Shodan adalah "Google for devices". Gunakan filter untuk hasil presisi:
+- `city:"Jakarta"`: Berdasarkan lokasi.
+- `port:21`: Mencari server FTP.
+- `product:"Apache"`: Berdasarkan versi software.
+- `os:"Windows 7"`: Mencari sistem operasi jadul yang rentan.
+
+---
+
+## 🔍 Case Study: OSINT Workflow
+1. **Identifikasi Domain Utama**: Temukan IP dan kepemilikan via `whois`.
+2. **Enumerasi Subdomain**: Gunakan `subfinder` atau `amass` untuk menemukan `dev.target.com` atau `staging.target.com`.
+3. **Pencarian File Sensitif**: Gunakan Google Dorking mencari file `.env` atau `.bak`.
+4. **Profil Karyawan**: Cari nama dan jabatan di LinkedIn untuk simulasi Social Engineering.
+5. **Analisis Infrastruktur**: Gunakan Shodan untuk melihat port yang terbuka tanpa di-scan secara aktif.
+
+---
+
+## 📖 Referensi
 - **OSINT Framework**: [https://osintframework.com/](https://osintframework.com/)
-- **Practical Malware Analysis - Michael Sikorski**
+- **Google Hacking Database (GHDB)**: [Exploit-DB Dorks](https://www.exploit-db.com/google-hacking-database)
+- **Kali Linux Tools Documentation**: [https://www.kali.org/tools/](https://www.kali.org/tools/)
+- **The Art of Invisibility** - Kevin Mitnick

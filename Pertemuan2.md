@@ -1,7 +1,6 @@
-# Pertemuan 2: Linux & Networking Fundamentals untuk Hacking
+# 🛡️ Pertemuan 2: Linux & Networking Fundamentals untuk Hacking
 
-## Tujuan
-Menguasai dasar-dasar sistem operasi dan jaringan untuk penetration testing.
+**Tujuan:** Menguasai dasar-dasar sistem operasi dan jaringan untuk penetration testing menggunakan lingkungan virtual berbasis Docker.
 
 ---
 
@@ -27,12 +26,21 @@ Linux Command Line Interface (CLI) adalah antarmuka berbasis teks untuk berinter
 
 ### 2. Struktur File Linux & User Privileges
 #### Struktur File Linux
-- **`/`**: Direktori root, induk dari semua direktori.
-- **`/home`**: Direktori home untuk pengguna.
-- **`/etc`**: Berisi file konfigurasi sistem.
-- **`/var`**: Berisi file yang sering berubah seperti log.
-- **`/bin` dan `/usr/bin`**: Berisi perintah-perintah dasar.
-- **`/root`**: Direktori home untuk root.
+Linux menggunakan struktur direktori hierarkis yang dimulai dari root (`/`):
+
+```mermaid
+graph TD
+    R[/] --> bin[bin]
+    R --> etc[etc]
+    R --> home[home]
+    R --> root_dir[root]
+    R --> var[var]
+    R --> usr[usr]
+    
+    home --> user1[user_ikhwan]
+    etc --> conf[config_files]
+    var --> log[log_files]
+```
 
 #### User Privileges
 - **User**: Pengguna biasa dengan akses terbatas.
@@ -45,37 +53,33 @@ Linux Command Line Interface (CLI) adalah antarmuka berbasis teks untuk berinter
 
 ---
 
-### 3. TCP/IP, Ports, Protocols, dan Model OSI
-#### TCP/IP
-- Protokol komunikasi yang digunakan di internet.
-- Terdiri dari 4 lapisan:
-  1. **Application Layer** (HTTP, FTP, DNS).
-  2. **Transport Layer** (TCP, UDP).
-  3. **Internet Layer** (IP, ICMP).
-  4. **Network Access Layer** (Ethernet, Wi-Fi).
+#### Model OSI & TCP/IP
+Perbandingan antara model referensi OSI dan implementasi praktis TCP/IP:
 
-#### Ports
-- Titik akhir komunikasi dalam jaringan.
-- Contoh:
-  - **Port 80**: HTTP.
-  - **Port 443**: HTTPS.
-  - **Port 22**: SSH.
-
-#### Protocols
-- **HTTP/HTTPS**: Protokol web.
-- **FTP**: Transfer file.
-- **SSH**: Remote login aman.
-- **DNS**: Resolusi nama domain.
-
-#### Model OSI
-- Model referensi 7 lapisan:
-  1. **Physical Layer**.
-  2. **Data Link Layer**.
-  3. **Network Layer**.
-  4. **Transport Layer**.
-  5. **Session Layer**.
-  6. **Presentation Layer**.
-  7. **Application Layer**.
+```mermaid
+graph LR
+    subgraph TCP_IP
+    T1[Application]
+    T2[Transport]
+    T3[Internet]
+    T4[Network Access]
+    end
+    
+    subgraph OSI
+    O1[Application]
+    O2[Presentation]
+    O3[Session]
+    O4[Transport]
+    O5[Network]
+    O6[Data Link]
+    O7[Physical]
+    end
+    
+    O1 & O2 & O3 --- T1
+    O4 --- T2
+    O5 --- T3
+    O6 & O7 --- T4
+```
 
 ---
 
@@ -91,282 +95,121 @@ Linux Command Line Interface (CLI) adalah antarmuka berbasis teks untuk berinter
 ### 5. Virtualization & Lab Setup dengan VMware/VirtualBox
 - **Virtualisasi**: Membuat lingkungan virtual untuk menjalankan sistem operasi di dalam sistem operasi utama.
 - **VMware/VirtualBox**: Perangkat lunak untuk membuat dan mengelola mesin virtual.
-- **Lab Setup**:
-  - Instal VMware/VirtualBox.
-  - Buat mesin virtual dengan sistem operasi Linux (misalnya, Kali Linux).
-  - Konfigurasi jaringan virtual untuk simulasi penetration testing.
 
 ---
 
-## Hands-on
+## Hands-on: Lab Kali Linux dengan Docker
 
-### 1. Menggunakan Terminal Linux
-#### Contoh Perintah:
+Menggunakan Docker adalah cara tercepat dan teringan untuk menjalankan Kali Linux tanpa harus menginstal Virtual Machine yang berat.
+
+### 1. Persiapan Lab (Setup Docker)
+Pastikan Docker sudah terinstal di komputer host (Windows/Linux/Mac).
+
 ```bash
-# Menampilkan daftar file
-ls
+# 1. Unduh image Kali Linux Rolling terbaru
+docker pull kalilinux/kali-rolling
 
-# Pindah ke direktori
-cd /home/user
-
-# Buat file baru dengan nano
-nano file.txt
-
-# Ubah izin file
-chmod 755 file.txt
-
-# Cari teks dalam file
-grep "keyword" file.txt
-
-# Jalankan perintah sebagai root
-sudo apt update
+# 2. Jalankan container secara interaktif (Interactive Terminal)
+# --rm otomatis menghapus container saat exit
+# -it memungkinkan interaksi langsung
+docker run -it --rm kalilinux/kali-rolling /bin/bash
 ```
 
----
+### 2. Konfigurasi Lingkungan (Inside Container)
+Setelah masuk ke prompt `#`, lakukan inisialisasi alat dasar:
 
-### 2. Analisis Lalu Lintas Jaringan dengan Wireshark
-#### Langkah-langkah:
-1. Buka Wireshark.
-2. Pilih antarmuka jaringan yang aktif.
-3. Mulai menangkap paket.
-4. Gunakan filter untuk fokus pada protokol tertentu, misalnya:
-   - `tcp.port == 80` untuk HTTP.
-   - `ip.addr == 192.168.1.1` untuk alamat IP tertentu.
-5. Analisis paket untuk memahami pola lalu lintas.
-
-# Hands-on: Praktikum Linux & Networking Fundamentals
-
-Berikut adalah panduan lengkap untuk praktikum Linux dan jaringan yang mencakup penggunaan terminal Linux, analisis lalu lintas jaringan dengan Wireshark, dan setup lab virtualisasi.
-
----
-
-## 1. Menggunakan Terminal Linux
-
-### Langkah 1: Membuka Terminal
-- Di Linux, buka terminal dengan menekan `Ctrl + Alt + T` atau cari "Terminal" di menu aplikasi.
-
-### Langkah 2: Perintah Dasar Linux
-#### a. Menjelajahi Direktori
 ```bash
-# Menampilkan direktori saat ini
+# Update repository
+apt update
+
+# Instal alat pendukung (vim/nano untuk edit file)
+apt install nano -y
+
+# Cek sistem operasi
+cat /etc/os-release
+```
+
+### 3. Latihan Dasar CLI & Navigasi
+Praktikkan perintah yang telah dipelajari di teori:
+
+```bash
+# Navigasi dan pembuatan folder
 pwd
+ls -la
+mkdir lab_hacking
+cd lab_hacking
 
-# Menampilkan daftar file dan direktori
-ls
+# Bermain dengan file
+echo "Rahasia Negara" > rahasia.txt
+cat rahasia.txt
 
-# Menampilkan daftar file dengan detail (izin, ukuran, dll.)
-ls -l
-
-# Pindah ke direktori home
-cd ~
-
-# Pindah ke direktori tertentu
-cd /var/log
-
-# Kembali ke direktori sebelumnya
-cd ..
+# Mengubah izin file (chmod)
+# Buat file hanya bisa dibaca pemilik
+chmod 400 rahasia.txt
+ls -l rahasia.txt
+# Coba baca file (berhasil)
+cat rahasia.txt
+# Coba tulis ulang (akan error 'Permission denied')
+echo "Ubah" > rahasia.txt
 ```
 
-#### b. Membuat dan Mengelola File
-```bash
-# Buat direktori baru
-mkdir myfolder
-
-# Masuk ke direktori
-cd myfolder
-
-# Buat file baru
-touch file.txt
-
-# Update Package List
-apt update
-
-# Add Nano
-apt install nano
-
-# View Version nano
-nano --version
-
-# Edit file dengan nano
-nano file.txt
-  - Tekan `Ctrl + X` untuk keluar, `Y` untuk menyimpan.
-
-# Menyalin file
-cp file.txt file_backup.txt
-
-# Memindahkan file
-mv file.txt ../file.txt
-
-# Menghapus file
-rm file_backup.txt
-
-# Menghapus direktori
-rm -r myfolder
-```
-
-#### c. Mengelola Izin File
-
-| Mode        | Deskripsi                                                                                     | Contoh                   | Izin                                            |
-|:------------|:----------------------------------------------------------------------------------------------|:-------------------------|:------------------------------------------------|
-| `chmod 777` | Memberikan akses penuh (baca, tulis, jalankan) kepada semua orang                             | `chmod 777 file.txt`     | Pemilik: rwx <br> Grup: rwx <br> Lain-lain: rwx |
-| `chmod 755` | Memberikan akses penuh kepada pemilik, dan akses baca dan jalankan kepada grup dan lain-lain  | `chmod 755 script.sh`    | Pemilik: rwx <br> Grup: r-x <br> Lain-lain: r-x |
-| `chmod 644` | Memberikan akses baca dan tulis kepada pemilik, dan akses baca saja kepada grup dan lain-lain | `chmod 644 document.pdf` | Pemilik: rw- <br> Grup: r-- <br> Lain-lain: r-- |
-| `chmod 600` | Memberikan akses baca dan tulis hanya kepada pemilik                                          | `chmod 600 private.key`  | Pemilik: rw- <br> Grup: --- <br> Lain-lain: --- |
-| `chmod +x`  | Menambahkan izin jalankan ke file                                                             | `chmod +x script.sh`     | Menambahkan izin jalankan untuk semua           |
-| `chmod -w`  | Menghapus izin tulis dari file                                                                | `chmod -w file.txt`      | Menghapus izin tulis untuk semua                |
+### 4. Persistence (Menyimpan Pekerjaan)
+Secara default, Docker container bersifat *stateless* (hilang saat ditutup). Gunakan **Volumes** untuk menyimpan data ke komputer host.
 
 ```bash
-# Lihat izin file
-ls -l file.txt
+# Jalankan Docker dengan mounting folder lokal ke container
+# Ganti 'C:\Users\Documents\Hacking' dengan path folder Anda
+docker run -it -v "C:\Users\ikhwa\Documents\EH-Lab:/work" kalilinux/kali-rolling /bin/bash
 
-# Ubah izin file
-chmod 755 file.txt  # rwxr-xr-x
-chmod +x file.txt  # Tambahkan izin eksekusi
-chmod 644 file.txt # rw-r--r--
-
-# Ubah kepemilikan file
-sudo chown user:group file.txt
-```
-
-#### d. Mencari File dan Teks
-```bash
-# Cari file berdasarkan nama
-find / -name "file.txt"
-
-# Cari teks dalam file
-grep "keyword" file.txt
-
-# Cari teks dalam direktori secara rekursif
-grep -r "keyword" /path/to/directory
-```
-
-#### e. Menggunakan `sudo`
-```bash
-# Install Sudo
-apt update
-apt install sudo
-
-# Update daftar paket
-sudo apt update
-
-# Install aplikasi
-sudo apt install nmap
-
-# Jalankan perintah sebagai root
-sudo su
+# Di dalam container, folder ada di /work
+cd /work
+touch hasil_lab.txt
 ```
 
 ---
 
-## 2. Analisis Lalu Lintas Jaringan dengan Wireshark
+## 🛠️ Analisis Jaringan dengan Wireshark
 
-### Langkah 1: Instal Wireshark
-- Di Linux, instal Wireshark dengan perintah:
+Wireshark adalah alat analisis protokol jaringan terbaik di dunia yang memungkinkan Anda melihat apa yang terjadi di jaringan Anda pada tingkat mikroskopis.
+
+### 1. Instalasi di Berbagai Platform
+- **Kali Linux**: Biasanya sudah terinstal secara default. Jika belum:
   ```bash
-  sudo apt update
-  sudo apt install wireshark
+  sudo apt update && sudo apt install wireshark -y
   ```
+- **Windows**: Unduh installer `.exe` dari [wireshark.org](https://www.wireshark.org/download.html). Pastikan menginstal **Npcap** saat proses instalasi.
+- **macOS**: Instal via Homebrew dengan perintah `brew install --cask wireshark`.
 
-### Langkah 2: Menjalankan Wireshark
-1. Buka Wireshark dari terminal atau menu aplikasi.
-2. Pilih antarmuka jaringan yang aktif (misalnya, `eth0` atau `wlan0`).
-3. Klik "Start" untuk mulai menangkap paket.
+### 2. Dasar-Dasar Sniffing
+- **Promiscuous Mode**: Pastikan ini aktif agar Wireshark dapat menangkap semua paket di segmen jaringan, bukan hanya yang ditujukan untuk komputer Anda.
+- **Capture Filter (BPF Syntax)**: Digunakan *sebelum* mulai capture untuk membatasi data yang masuk.
+  - `host 192.168.1.1`: Hanya trafik dari/ke IP tersebut.
+  - `port 80`: Hanya trafik HTTP.
+  - `net 192.168.1.0/24`: Seluruh subnet.
 
-### Langkah 3: Filter Paket
-- Gunakan filter untuk fokus pada jenis lalu lintas tertentu:
-  - **HTTP**: `tcp.port == 80`
-  - **HTTPS**: `tcp.port == 443`
-  - **DNS**: `udp.port == 53`
-  - **Alamat IP tertentu**: `ip.addr == 192.168.1.1`
+### 3. Display Filter (Post-Capture)
+Digunakan *setelah* data tertangkap untuk mempermudah analisis.
+- `http.request.method == "POST"`: Mencari data yang dikirim (biasanya berisi password/form).
+- `dns.flags.response == 0`: Melihat query DNS yang keluar.
+- `tcp.flags.syn == 1 and tcp.flags.ack == 0`: Mendeteksi upaya inisiasi koneksi (sering digunakan dalam port scanning).
+- `frame contains "password"`: Mencari string teks spesifik di seluruh paket.
 
-### Langkah 4: Analisis Paket
-1. Cari paket HTTP dengan filter `http`.
-2. Klik paket untuk melihat detailnya:
-   - **Frame**: Informasi umum tentang paket.
-   - **Ethernet**: Alamat MAC sumber dan tujuan.
-   - **IP**: Alamat IP sumber dan tujuan.
-   - **TCP/UDP**: Port sumber dan tujuan.
-   - **Data**: Isi paket (jika ada).
+### 4. Praktik: Mengintip Data Plaintext
+Banyak protokol lama tidak terenkripsi. Berikut cara melihat isinya:
+1. Jalankan Capture pada interface yang aktif.
+2. Filter dengan `http` atau `ftp`.
+3. Klik kanan pada paket yang menarik -> **Follow** -> **TCP Stream**.
+4. Wireshark akan merekonstruksi seluruh percakapan. Jika target login ke situs HTTP biasa, Anda akan melihat `username` dan `password` dalam teks biasa.
 
-### Langkah 5: Simpan Hasil Capture
-- Klik `File > Save As` untuk menyimpan hasil capture dalam format `.pcap`.
+### 5. Sumber Belajar & Referensi Resmi
+- **Wireshark User's Guide**: [Dokumentasi Resmi](https://www.wireshark.org/docs/wsug_html_chunked/)
+- **Wireshark Wiki**: Contoh file `.pcap` untuk latihan [SampleCaptures](https://wiki.wireshark.org/SampleCaptures)
+- **SharkFest**: Kumpulan presentasi teknik analisis tingkat lanjut [SharkFest Retrospective](https://sharkfestus.wireshark.org/retrospective)
 
 ---
 
-## 3. Virtualisasi & Lab Setup dengan VMware/VirtualBox
-
-### Langkah 1: Instal VMware/VirtualBox
-- Download dan instal VMware Workstation atau VirtualBox dari situs resmi:
-  - VMware: [https://www.vmware.com](https://www.vmware.com)
-  - VirtualBox: [https://www.virtualbox.org](https://www.virtualbox.org)
-
-### Langkah 2: Download ISO Linux
-- Download ISO sistem operasi Linux (misalnya, Kali Linux) dari situs resmi:
-  - Kali Linux: [https://www.kali.org](https://www.kali.org)
-
-### Langkah 3: Buat Mesin Virtual
-1. Buka VMware/VirtualBox.
-2. Klik "New" untuk membuat mesin virtual baru.
-3. Beri nama mesin virtual (misalnya, "Kali Linux").
-4. Pilih tipe sistem operasi (Linux) dan versi (Debian 64-bit).
-5. Alokasikan RAM (minimal 2 GB) dan ruang disk (minimal 20 GB).
-6. Pilih file ISO yang telah diunduh sebagai media instalasi.
-
-### Langkah 4: Instal Sistem Operasi
-1. Jalankan mesin virtual.
-2. Ikuti langkah-langkah instalasi Kali Linux:
-   - Pilih bahasa, lokasi, dan keyboard.
-   - Konfigurasi partisi disk (gunakan opsi default).
-   - Buat pengguna dan password.
-3. Selesaikan instalasi dan reboot mesin virtual.
-
-### Langkah 5: Konfigurasi Jaringan Virtual
-1. Di VMware/VirtualBox, buka pengaturan mesin virtual.
-2. Pilih "Network" dan atur adapter jaringan ke mode "Bridged" atau "NAT".
-3. Jalankan mesin virtual dan periksa koneksi jaringan:
-   ```bash
-   ping google.com
-   ```
-
----
-
-## 4. Praktikum Lanjutan
-
-### a. Scanning Jaringan dengan Nmap
-- Install Nmap:
-  ```bash
-  sudo apt install nmap
-  ```
-- Lakukan scanning:
-  ```bash
-  # Scan alamat IP tertentu
-  nmap 192.168.1.1
-
-  # Scan seluruh subnet
-  nmap 192.168.1.0/24
-
-  # Deteksi sistem operasi
-  nmap -O 192.168.1.1
-
-  # Scan port tertentu
-  nmap -p 80,443 192.168.1.1
-  ```
-
-### b. Membuat Script Bash Sederhana
-- Buat file script:
-  ```bash
-  nano myscript.sh
-  ```
-- Isi script:
-  ```bash
-  #!/bin/bash
-  echo "Hello, World!"
-  ```
-- Berikan izin eksekusi:
-  ```bash
-  chmod +x myscript.sh
-  ```
-- Jalankan script:
-  ```bash
-  ./myscript.sh
-  ```
+## 📖 Referensi
+- **The Linux Command Line** - William Shotts
+- **Nmap Network Scanning** - Gordon "Fyodor" Lyon
+- **Docker Documentation**: [https://docs.docker.com/](https://docs.docker.com/)
+- **Kali Linux Docker**: [https://www.kali.org/docs/containers/using-kali-docker-images/](https://www.kali.org/docs/containers/using-kali-docker-images/)

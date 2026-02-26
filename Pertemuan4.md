@@ -1,79 +1,72 @@
 # 🛡️ Pertemuan 4: Scanning & Enumeration
 
-## 🌐 Tujuan Pembelajaran
-Mahasiswa mampu mengidentifikasi layanan aktif dan kemungkinan kerentanannya pada suatu target menggunakan berbagai teknik scanning dan enumerasi.
+**Tujuan:** Mengidentifikasi layanan aktif, port terbuka, dan kemungkinan kerentanan pada target.
 
 ---
 
 ## 📚 Materi Teori
 
 ### 1. Nmap untuk Scanning Jaringan
-Nmap (Network Mapper) adalah tools open-source yang digunakan untuk:
-- Menemukan host dalam jaringan
-- Memetakan port terbuka
-- Mendeteksi layanan dan versi
-- Menemukan sistem operasi (OS Fingerprinting)
+Nmap (Network Mapper) adalah standar industri untuk pemetaan jaringan.
+- **Host Discovery**: Menentukan komputer mana yang aktif dalam jaringan.
+- **Port Scanning**: Mengetahui port TCP/UDP yang terbuka (Open/Closed/Filtered).
+- **Service & OS Detection**: Menebak versi aplikasi dan sistem operasi target.
 
-Contoh perintah:
-```bash
-nmap -sS -sV -O 192.168.1.1
+### 2. Alur Scanning & Enumeration
+Proses ini bertujuan untuk "mempersempit" serangan dari alamat IP ke layanan spesifik yang rentan.
+
+```mermaid
+graph LR
+    A[Target IP] --> B[Host Discovery]
+    B --> C[Port Scanning]
+    C --> D[Service Detection]
+    D --> E[OS Fingerprinting]
+    E --> F[Vulnerability Mapping]
+    
+    subgraph Tools
+    T1[Nmap]
+    T2[Netcat]
+    T3[Nikto]
+    end
 ```
 
-### 2. Enumerasi dengan Netcat & Enum4linux
-- **Netcat (nc)**: digunakan untuk menghubungkan ke port dan membaca banner:
+### 3. Enumerasi Layanan (Netcat & Enum4linux)
+- **Netcat (nc)**: Digunakan untuk "Banner Grabbing" (mengambil identitas layanan saat terkoneksi).
+- **Enum4linux**: Sangat efektif untuk mengumpulkan informasi dari sistem Windows/SMB (user, share list, kebijakan password).
+
+### 4. Web Scanning (Nikto & Dirb)
+- **Nikto**: Menscan web server untuk file sensitif dan konfigurasi yang salah.
+- **Dirb**: Brute-force direktori tersembunyi (misal: `/admin`, `/config`).
+
+---
+
+## 🛠️ Hands-on
+
+### 1. Nmap Mastery
+Lakukan scanning dengan berbagai opsi:
 ```bash
-nc 192.168.1.1 80
-```
-- **Enum4linux**: tool berbasis Linux untuk enumerasi informasi dari sistem berbasis Windows (SMB).
-```bash
-enum4linux -a 192.168.1.1
+# Scan cepat 100 port populer
+nmap -F <target_IP>
+
+# Scan deteksi servis dan OS (Intensif)
+nmap -sV -O <target_IP>
+
+# Scan seluruh subnet
+nmap 192.168.1.0/24
 ```
 
-### 3. Banner Grabbing & Fingerprinting OS
-- Banner grabbing adalah teknik untuk mendapatkan informasi layanan dan versi dari server
-- OS Fingerprinting digunakan untuk menebak sistem operasi yang digunakan target
+### 2. Banner Grabbing & SMB Enumeration
+```bash
+# Mengambil banner layanan di port 80
+nc -v <target_IP> 80
 
-### 4. Web Scanning dengan Nikto & Dirb
-- **Nikto**: scanner web server untuk mendeteksi celah umum dan file sensitif
-```bash
-nikto -h http://target.com
-```
-- **Dirb**: tool untuk brute-force direktori di website
-```bash
-dirb http://target.com
+# Enumerasi SMB (Jika port 445 terbuka)
+enum4linux -a <target_IP>
 ```
 
 ---
 
-## 📝 Hands-on
-
-### 1. Scanning Jaringan dengan Nmap
-- Lakukan scanning pada alamat IP target (gunakan alamat dari lab lokal atau virtual environment seperti TryHackMe/VulnHub)
-- Catat port yang terbuka, layanan yang berjalan, dan versi layanan
-
-### 2. Enumerasi Layanan
-- Gunakan Netcat untuk mencoba grab banner dari port terbuka (HTTP, SSH, FTP)
-- Gunakan Enum4linux untuk target berbasis Windows
-
-Contoh:
-```bash
-nc 10.10.10.10 80
-```
-```bash
-enum4linux -a 10.10.10.10
-```
-
----
-
-## 📆 Referensi
-- Gordon "Fyodor" Lyon - *Nmap Network Scanning*
-- https://nmap.org/book/
-- https://github.com/Tib3rius/enum4linux-ng
-- https://tools.kali.org/information-gathering/nikto
-- https://tools.kali.org/web-applications/dirb
-
----
-
-## ⚠️ Etika Pengujian
-Lakukan hanya pada sistem lab atau sistem milik pribadi. Jangan melakukan scanning dan enumerasi tanpa izin pada sistem publik atau milik orang lain.
-
+## 📖 Referensi
+- **Nmap Network Scanning** - Gordon "Fyodor" Lyon
+- **Nmap Official Documentation**: [https://nmap.org/book/](https://nmap.org/book/)
+- **Enum4linux project**: [https://github.com/CiscoCXSecurity/enum4linux](https://github.com/CiscoCXSecurity/enum4linux)
