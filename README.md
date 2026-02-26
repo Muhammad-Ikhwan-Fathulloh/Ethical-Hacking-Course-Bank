@@ -6,33 +6,6 @@ Bank Materi dan Praktikum Kuliah Ethical Hacking yang Terstruktur dan Komprehens
 ## **📍 Navigasi Cepat**
 - 🏠 **[Dashboard Materi (HTML)](index.html)**
 - 🚀 **[Energy Booster buat Penulis Materi](https://goakal.com/nocturnailed/energy-booster-buat-penulis-materi)**
-- 📅 **[Daftar Isi Lengkap](#-daftar-isi)**
-
----
-
-## **📍 Daftar Isi**
-- [Ethical-Hacking-Course-Bank 🛡️](#ethical-hacking-course-bank-️)
-  - [**📍 Navigasi Cepat**](#-navigasi-cepat)
-  - [**📍 Daftar Isi**](#-daftar-isi)
-  - [**📅 Minggu 1-2: Dasar-Dasar Ethical Hacking**](#-minggu-1-2-dasar-dasar-ethical-hacking)
-    - [**🛡️ Pertemuan 1: Pengenalan Ethical Hacking \& Cybersecurity**](#️-pertemuan-1-pengenalan-ethical-hacking--cybersecurity)
-    - [**🛡️ Pertemuan 2: Linux \& Networking Fundamentals**](#️-pertemuan-2-linux--networking-fundamentals)
-  - [**📅 Minggu 3-4: Information Gathering \& Scanning**](#-minggu-3-4-information-gathering--scanning)
-    - [**🛡️ Pertemuan 3: Passive \& Active Reconnaissance**](#️-pertemuan-3-passive--active-reconnaissance)
-    - [**🛡️ Pertemuan 4: Scanning \& Enumeration**](#️-pertemuan-4-scanning--enumeration)
-  - [**📅 Minggu 5-6: Eksploitasi Sistem \& Akses Tidak Sah**](#-minggu-5-6-eksploitasi-sistem--akses-tidak-sah)
-    - [**🛡️ Pertemuan 5: Vulnerability Assessment \& Exploitation**](#️-pertemuan-5-vulnerability-assessment--exploitation)
-    - [**🛡️ Pertemuan 6: Web Application Hacking (OWASP)**](#️-pertemuan-6-web-application-hacking-owasp)
-  - [**📅 Minggu 7-8: Password Cracking \& Wireless Hacking**](#-minggu-7-8-password-cracking--wireless-hacking)
-    - [**🛡️ Pertemuan 7: Password Cracking \& Privilege Escalation**](#️-pertemuan-7-password-cracking--privilege-escalation)
-    - [**🛡️ Pertemuan 8: Wireless Network Hacking**](#️-pertemuan-8-wireless-network-hacking)
-  - [**📅 Minggu 9-14: Advanced Attacks, Forensics \& Defense**](#-minggu-9-14-advanced-attacks-forensics--defense)
-    - [**🛡️ Pertemuan 9: Social Engineering Attacks**](#️-pertemuan-9-social-engineering-attacks)
-    - [**🛡️ Pertemuan 10: Malware Analysis \& Reverse Engineering**](#️-pertemuan-10-malware-analysis--reverse-engineering)
-    - [**🛡️ Pertemuan 11: Advanced PenTest \& Red Teaming**](#️-pertemuan-11-advanced-pentest--red-teaming)
-    - [**🛡️ Pertemuan 12: Incident Response \& Digital Forensics**](#️-pertemuan-12-incident-response--digital-forensics)
-    - [**🛡️ Pertemuan 13: Security Hardening \& Blue Team**](#️-pertemuan-13-security-hardening--blue-team)
-    - [**🛡️ Pertemuan 14: Capture The Flag (CTF) Challenge**](#️-pertemuan-14-capture-the-flag-ctf-challenge)
 
 ---
 
