@@ -1,243 +1,113 @@
 # Ethical-Hacking-Course-Bank 🛡️
-Bank Materi dan Praktikum Kuliah Ethical Hacking.
+Bank Materi dan Praktikum Kuliah Ethical Hacking yang Terstruktur dan Komprehensif.
+
+---
+
+## **📍 Navigasi Cepat**
+- 🏠 **[Dashboard Materi (HTML)](index.html)**
+- 🚀 **[Energy Booster buat Penulis Materi](https://goakal.com/nocturnailed/energy-booster-buat-penulis-materi)**
+- 📅 **[Daftar Isi Lengkap](#-daftar-isi)**
 
 ---
 
 ## **📍 Daftar Isi**
-- [Minggu 1-2: Dasar-Dasar Ethical Hacking](#-minggu-1-2-dasar-dasar-ethical-hacking)
-  - [Pertemuan 1: Pengenalan Ethical Hacking & Cybersecurity](#-pertemuan-1-pengenalan-ethical-hacking--cybersecurity)
-  - [Pertemuan 2: Linux & Networking Fundamentals](#-pertemuan-2-linux--networking-fundamentals-untuk-hacking)
-- [Minggu 3-4: Information Gathering & Scanning](#-minggu-3-4-information-gathering--scanning)
-  - [Pertemuan 3: Passive & Active Reconnaissance](#-pertemuan-3-passive--active-reconnaissance-footprinting)
-  - [Pertemuan 4: Scanning & Enumeration](#-pertemuan-4-scanning--enumeration)
-- [Minggu 5-6: Eksploitasi Sistem & Akses Tidak Sah](#-minggu-5-6-eksploitasi-sistem--akses-tidak-sah)
-- [Minggu 7-8: Password Cracking & Wireless Hacking](#-minggu-7-8-password-cracking--wireless-hacking)
-- [Minggu 9-14: Advanced Attacks, Penetration Testing & Defense](#-minggu-9-14-advanced-attacks-penetration-testing--defense)
+- [Ethical-Hacking-Course-Bank 🛡️](#ethical-hacking-course-bank-️)
+  - [**📍 Navigasi Cepat**](#-navigasi-cepat)
+  - [**📍 Daftar Isi**](#-daftar-isi)
+  - [**📅 Minggu 1-2: Dasar-Dasar Ethical Hacking**](#-minggu-1-2-dasar-dasar-ethical-hacking)
+    - [**🛡️ Pertemuan 1: Pengenalan Ethical Hacking \& Cybersecurity**](#️-pertemuan-1-pengenalan-ethical-hacking--cybersecurity)
+    - [**🛡️ Pertemuan 2: Linux \& Networking Fundamentals**](#️-pertemuan-2-linux--networking-fundamentals)
+  - [**📅 Minggu 3-4: Information Gathering \& Scanning**](#-minggu-3-4-information-gathering--scanning)
+    - [**🛡️ Pertemuan 3: Passive \& Active Reconnaissance**](#️-pertemuan-3-passive--active-reconnaissance)
+    - [**🛡️ Pertemuan 4: Scanning \& Enumeration**](#️-pertemuan-4-scanning--enumeration)
+  - [**📅 Minggu 5-6: Eksploitasi Sistem \& Akses Tidak Sah**](#-minggu-5-6-eksploitasi-sistem--akses-tidak-sah)
+    - [**🛡️ Pertemuan 5: Vulnerability Assessment \& Exploitation**](#️-pertemuan-5-vulnerability-assessment--exploitation)
+    - [**🛡️ Pertemuan 6: Web Application Hacking (OWASP)**](#️-pertemuan-6-web-application-hacking-owasp)
+  - [**📅 Minggu 7-8: Password Cracking \& Wireless Hacking**](#-minggu-7-8-password-cracking--wireless-hacking)
+    - [**🛡️ Pertemuan 7: Password Cracking \& Privilege Escalation**](#️-pertemuan-7-password-cracking--privilege-escalation)
+    - [**🛡️ Pertemuan 8: Wireless Network Hacking**](#️-pertemuan-8-wireless-network-hacking)
+  - [**📅 Minggu 9-14: Advanced Attacks, Forensics \& Defense**](#-minggu-9-14-advanced-attacks-forensics--defense)
+    - [**🛡️ Pertemuan 9: Social Engineering Attacks**](#️-pertemuan-9-social-engineering-attacks)
+    - [**🛡️ Pertemuan 10: Malware Analysis \& Reverse Engineering**](#️-pertemuan-10-malware-analysis--reverse-engineering)
+    - [**🛡️ Pertemuan 11: Advanced PenTest \& Red Teaming**](#️-pertemuan-11-advanced-pentest--red-teaming)
+    - [**🛡️ Pertemuan 12: Incident Response \& Digital Forensics**](#️-pertemuan-12-incident-response--digital-forensics)
+    - [**🛡️ Pertemuan 13: Security Hardening \& Blue Team**](#️-pertemuan-13-security-hardening--blue-team)
+    - [**🛡️ Pertemuan 14: Capture The Flag (CTF) Challenge**](#️-pertemuan-14-capture-the-flag-ctf-challenge)
 
 ---
 
 ## **📅 Minggu 1-2: Dasar-Dasar Ethical Hacking**
 
 ### **🛡️ [Pertemuan 1: Pengenalan Ethical Hacking & Cybersecurity](Pertemuan1.md)**
-**Tujuan:** Memahami konsep dasar ethical hacking dan perannya dalam keamanan siber.
+- **Teori**: Definisi Hacker (White, Black, Grey), Hukum **UU ITE (Pasal 30-32)**, dan Siklus Hacking (Phase 1-5).
+- **Hands-on**: Instalasi **WSL2 Ubuntu**, pengenalan terminal, serta penggunaan **Pipes & Redirection**.
+- **Visual**: Diagram Mermaid Hacking Phases & Hacker Classification.
 
-#### **Materi Teori:**
-- Definisi dan peran ethical hacking
-- Jenis hacker: White Hat, Black Hat, Grey Hat
-- Perbedaan Ethical Hacking dan Cybercrime
-- Hukum & Regulasi (GDPR, NIST, ISO 27001, UU ITE)
-- Tahapan hacking: Reconnaissance, Scanning, Gaining Access, Maintaining Access, Covering Tracks
-- Pengenalan sertifikasi: CEH, OSCP, CISSP, PenTest+
-
-#### **Hands-on:**
-- Instalasi Kali Linux di VirtualBox/VMware/Docker/WSL
-- Simulasi dasar terminal menggunakan Kali Linux
-
-#### **Referensi:**
-- EC-Council: Certified Ethical Hacker (CEH) v12
-- NIST Cybersecurity Framework
-- OWASP Top 10
-
----
-
-### **🛡️ [Pertemuan 2: Linux & Networking Fundamentals untuk Hacking](Pertemuan2.md)**
-**Tujuan:** Menguasai dasar-dasar sistem operasi dan jaringan untuk penetration testing.
-
-#### **Materi Teori:**
-- Dasar-dasar Linux Command Line (CLI)
-- Struktur file Linux & User Privileges
-- TCP/IP, Ports, Protocols, dan Model OSI
-- Wireshark untuk sniffing traffic
-- Virtualization & lab setup dengan VMware/VirtualBox
-
-#### **Hands-on:**
-- Navigasi terminal Linux (ls, cd, nano, chmod, sudo, grep)
-- Analisis lalu lintas jaringan dengan Wireshark
-
-#### **Referensi:**
-- The Linux Command Line - William Shotts
-- Nmap Network Scanning - Gordon "Fyodor" Lyon
+### **🛡️ [Pertemuan 2: Linux & Networking Fundamentals](Pertemuan2.md)**
+- **Teori**: Model OSI vs TCP/IP, Protokol Penting (**DHCP, DNS, NAT**), dan Proses Management Linux.
+- **Hands-on**: Sniffing trafik HTTP dengan **Wireshark**, Lab Docker Kali Linux, dan Persistence Management.
+- **Visual**: Mapping OSI Layer & Linux Directory Hierarchy.
 
 ---
 
 ## **📅 Minggu 3-4: Information Gathering & Scanning**
 
-### **🛡️ [Pertemuan 3: Passive & Active Reconnaissance (Footprinting)](Pertemuan3.md)**
-**Tujuan:** Mengumpulkan informasi tentang target sebelum melakukan serangan.
-
-#### **Materi Teori:**
-- OSINT (Open Source Intelligence)
-- WHOIS lookup, DNS Enumeration, Google Dorking
-- Passive vs. Active Reconnaissance
-- Email Harvesting & Metadata Extraction
-
-#### **Hands-on:**
-- Menggunakan **Shodan, Maltego, Recon-ng** untuk mencari informasi target
-- WHOIS lookup & DNS Enumeration dengan **nslookup dan dig**
-
----
+### **🛡️ [Pertemuan 3: Passive & Active Reconnaissance](Pertemuan3.md)**
+- **Teori**: OSINT Framework, Google Dorking, Whois Lookup, dan DNS Enumeration.
+- **Hands-on**: Mencari informasi target dengan **theHarvester, Shodan**, dan metadata extraction via **Exiftool**.
 
 ### **🛡️ [Pertemuan 4: Scanning & Enumeration](Pertemuan4.md)**
-**Tujuan:** Mengidentifikasi layanan dan kerentanan di target.
-
-#### **Materi Teori:**
-- **Nmap** untuk scanning jaringan
-- Enumerasi dengan **Netcat & Enum4linux**
-- Banner Grabbing & Fingerprinting OS
-- Web scanning dengan **Nikto & Dirb**
-
-#### **Hands-on:**
-- Scanning jaringan dengan Nmap
-- Melakukan enumerasi layanan menggunakan Netcat
+- **Teori**: Host Discovery (Ping/Traceroute), Port Scanning, Banner Grabbing, dan OS Fingerprinting.
+- **Hands-on**: Full Network Scan dengan **Nmap**, Enumerasi layanan via **Netcat**, dan web scan dengan **Nikto**.
 
 ---
 
 ## **📅 Minggu 5-6: Eksploitasi Sistem & Akses Tidak Sah**
 
-### **🛡️ Pertemuan 5: Vulnerability Assessment & Exploitation Basics**
-**Tujuan:** Memahami cara mengeksploitasi kerentanan sistem.
+### **🛡️ [Pertemuan 5: Vulnerability Assessment & Exploitation](Pertemuan5.md)**
+- **Teori**: CVE & Exploit Database, Bind vs Reverse Shell, dan Modul **Metasploit**.
+- **Hands-on**: Eksploitasi target via **msfconsole** dan studi kasus **Hackable Nuxt** (SQLi via cURL/SQLMap).
 
-#### **Materi Teori:**
-- CVE & Exploit Database (Exploit-DB, CVE, NVD)
-- Buffer Overflow & Code Injection
-- Penggunaan Metasploit Framework
-- Exploited SMB, FTP, dan RDP
-
-#### **Hands-on:**
-- Eksploitasi dengan **Metasploit** terhadap sistem rentan
-
----
-
-### **🛡️ Pertemuan 6: Web Application Hacking (OWASP Top 10)**
-**Tujuan:** Mengenali dan mengeksploitasi kelemahan aplikasi web.
-
-#### **Materi Teori:**
-- SQL Injection (SQLi)
-- Cross-Site Scripting (XSS)
-- Cross-Site Request Forgery (CSRF)
-- Broken Authentication & Session Hijacking
-
-#### **Hands-on:**
-- SQL Injection & XSS exploitation menggunakan DVWA (Damn Vulnerable Web App)
+### **🛡️ [Pertemuan 6: Web Application Hacking (OWASP)](Pertemuan6.md)**
+- **Teori**: Analisis mendalam **OWASP Top 10 (2021)** termasuk Broken Access Control & SSRF.
+- **Hands-on**: Audit keamanan dengan **npm audit**, Bypass login via SQLi, dan template laporan pentest profesional.
 
 ---
 
 ## **📅 Minggu 7-8: Password Cracking & Wireless Hacking**
 
-### **🛡️ Pertemuan 7: Password Cracking & Privilege Escalation**
-**Tujuan:** Memahami cara membobol password dan meningkatkan hak akses.
+### **🛡️ [Pertemuan 7: Password Cracking & Privilege Escalation](Pertemuan7.md)**
+- **Teori**: Hashing (MD5 hingga SHA256), Salt, Dictionary vs Rainbow Table, dan alur PrivEsc.
+- **Hands-on**: Unshadow `/etc/shadow` dan Cracking password dengan **John the Ripper** & **Hydra**.
 
-#### **Materi Teori:**
-- Brute Force & Dictionary Attack (Hydra, John The Ripper)
-- Windows & Linux Privilege Escalation
-- Token Hijacking & Pass-the-Hash attack
-
-#### **Hands-on:**
-- Cracking password dengan John the Ripper
+### **🛡️ [Pertemuan 8: Wireless Network Hacking](Pertemuan8.md)**
+- **Teori**: WEP, WPA2, WPA3, Rogue AP, dan Analisis **4-Way Handshake**.
+- **Hands-on**: Monitor Mode, Deauth Attack, dan Cracking WPA2 menggunakan **Aircrack-ng**.
 
 ---
 
-### **🛡️ Pertemuan 8: Wireless Network Hacking**
-**Tujuan:** Menguji keamanan Wi-Fi dan eksploitasi jaringan nirkabel.
+## **📅 Minggu 9-14: Advanced Attacks, Forensics & Defense**
 
-#### **Materi Teori:**
-- Jenis enkripsi Wi-Fi (WEP, WPA, WPA2, WPA3)
-- Serangan Evil Twin & Rogue Access Point
-- Wi-Fi Sniffing dengan Airodump-ng
+### **🛡️ [Pertemuan 9: Social Engineering Attacks](Pertemuan9.md)**
+- **Teori**: Psikologi Manipulasi, Vishing, Smishing, dan Siklus Serangan Manusia.
+- **Hands-on**: Simulasi Credential Harvester menggunakan **Social Engineering Toolkit (SET)**.
 
-#### **Hands-on:**
-- Cracking WPA2 Wi-Fi dengan Aircrack-ng
+### **🛡️ [Pertemuan 10: Malware Analysis & Reverse Engineering](Pertemuan10.md)**
+- **Teori**: Taksonomi Malware (Ransomware, Trojan), Static vs Dynamic Analysis.
+- **Hands-on**: Penggunaan **PeStudio**, Hash verification via **VirusTotal**, dan pengenalan **NSA Ghidra**.
 
----
+### **🛡️ [Pertemuan 11: Advanced PenTest & Red Teaming](Pertemuan11.md)**
+- **Teori**: Lateral Movement, Pivoting, Kerberoasting, dan Golden Ticket di Active Directory.
+- **Hands-on**: Post-exploitation dengan **Meterpreter (Kiwi/Mimikatz)** dan Autorouting.
 
-## **📅 Minggu 9-14: Advanced Attacks, Penetration Testing & Defense**
+### **🛡️ [Pertemuan 12: Incident Response & Digital Forensics](Pertemuan12.md)**
+- **Teori**: NIST Incident Life Cycle, Chain of Custody, dan Volatility Order.
+- **Hands-on**: Memory Forensics dengan **Volatility** dan analisis artefak via **Autopsy**.
 
-### **🛡️ Pertemuan 9: Advanced Persistent Threats (APT) & Social Engineering**
-**Tujuan:** Memahami teknik serangan jangka panjang dan manipulasi psikologis.
+### **🛡️ [Pertemuan 13: Security Hardening & Blue Team](Pertemuan13.md)**
+- **Teori**: Defense in Depth, IDS vs IPS, dan Strategi Monitoring Log.
+- **Hands-on**: Konfigurasi **Firewall UFW**, Hardening SSH, dan pencegahan Brute Force via **Fail2Ban**.
 
-#### **Materi Teori:**
-- Anatomy of an APT attack
-- Phishing, Spear Phishing, Vishing, Smishing
-- Social Engineering Toolkit (SET)
-
-#### **Hands-on:**
-- Simulasi serangan phishing menggunakan SET
-
----
-
-### **🛡️ Pertemuan 10-14: Advanced Attacks, Incident Response, & Defense**
-
-### **🛡️ Pertemuan 10: Malware Analysis & Reverse Engineering**
-**Tujuan:** Memahami karakteristik malware dan cara menganalisisnya secara aman.
-
-#### **Materi Teori:**
-- Jenis-jenis Malware (Virus, Worm, Trojan, Ransomware, Spyware)
-- Static Analysis: Menganalisis kode tanpa menjalankannya
-- Dynamic Analysis: Mengamati perilaku malware di lingkungan Sandbox
-- Reverse Engineering: Membongkar binary menggunakan **Ghidra atau IDA Pro**
-
-#### **Hands-on:**
-- Analisis file mencurigakan dengan **VirusTotal & PeStudio**
-- Deteksi malware sederhana di lingkungan lab
-
----
-
-### **🛡️ Pertemuan 11: Advanced Penetration Testing & Red Teaming**
-**Tujuan:** Memahami metodologi simulasi serangan tingkat lanjut dan operasi Red Team.
-
-#### **Materi Teori:**
-- Red Teaming vs. Penetration Testing
-- Lateral Movement & Pivoting
-- Post-Exploitation dengan **PowerShell Empire atau Cobalt Strike**
-- Active Directory Attacks (Kerberoasting, Golden Ticket)
-
-#### **Hands-on:**
-- Simulasi lateral movement di lab Windows AD
-- Penggunaan alat post-exploitation
-
----
-
-### **🛡️ Pertemuan 12: Incident Response & Digital Forensics**
-**Tujuan:** Mampu merespon insiden keamanan dan melakukan investigasi digital.
-
-#### **Materi Teori:**
-- Incident Response Life Cycle (NIST: Preparation, Detection, Containment, Eradication, Recovery)
-- Dasar Digital Forensics: Integrity, Chain of Custody
-- Analisis memori (RAM Forensics) dan disk forensics
-- Log Analysis (SIEM & EDR)
-
-#### **Hands-on:**
-- Investigasi artefak Windows dengan **Autopsy**
-- Analisis memory dump menggunakan **Volatility**
-
----
-
-### **🛡️ Pertemuan 13: Security Hardening & Blue Team Strategies**
-**Tujuan:** Mengimplementasikan strategi pertahanan untuk mengamankan infrastruktur.
-
-#### **Materi Teori:**
-- Prinsip Defense in Depth
-- Network Security: Firewall (PFSense), IDS/IPS (Snort/Suricata)
-- Endpoint Security: Antivirus, EDR, Hardening OS
-- Monitoring & Log Management (ELK Stack/Splunk)
-
-#### **Hands-on:**
-- Konfigurasi Rule Firewall dasar
-- Hardening server Linux & Windows
-
----
-
-### **🛡️ Pertemuan 14: Capture The Flag (CTF) Challenge & Sertifikasi Ethical Hacking**
-**Tujuan:** Menguji kemampuan melalui tantangan CTF dan merencanakan karir profesional.
-
-#### **Materi Teori:**
-- Jenis tantangan CTF: Jeopardy vs Attack-Defense
-- Platform latihan: TryHackMe, HackTheBox, VulnHub
-- Roadmap Karir: Sertifikasi (CEH, OSCP, eJPT, CISSP)
-- Etika Profesional bagi Ethical Hacker
-
-#### **Hands-on:**
-- Final Lab Challenge: Menemukan flag di mesin yang sudah disediakan
-
----
-_Dikelola oleh: Muhammad Ikhwan Fathulloh_
+### **🛡️ [Pertemuan 14: Capture The Flag (CTF) Challenge](Pertemuan14.md)**
+- **Teori**: Jeopardy vs Attack-Defense, Roadmap Sertifikasi (**OSCP, CEH, CISSP**), dan Etika Profesional.
+- **Hands-on**: Final Challenge Lab, referensi platform latihan (THM, HTB, VulnHub).

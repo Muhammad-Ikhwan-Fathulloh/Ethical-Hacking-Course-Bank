@@ -6,13 +6,29 @@
 
 ## 📚 Materi Teori
 
-### 1. Nmap untuk Scanning Jaringan
+### 1. Host Discovery & Network Mapping
+Sebelum melakukan port scanning, kita perlu memastikan target "hidup".
+
+- **Ping (ICMP Discover)**:
+  ```bash
+  ping -c 4 target.com
+  ```
+- **Traceroute**: Melacak hops yang dilalui paket.
+  ```bash
+  traceroute target.com
+  ```
+- **ARP Scan** (Untuk jaringan lokal):
+  ```bash
+  sudo arp-scan -l
+  ```
+
+### 2. Nmap untuk Scanning Jaringan
 Nmap (Network Mapper) adalah standar industri untuk pemetaan jaringan.
 - **Host Discovery**: Menentukan komputer mana yang aktif dalam jaringan.
 - **Port Scanning**: Mengetahui port TCP/UDP yang terbuka (Open/Closed/Filtered).
 - **Service & OS Detection**: Menebak versi aplikasi dan sistem operasi target.
 
-### 2. Alur Scanning & Enumeration
+### 3. Alur Scanning & Enumeration
 Proses ini bertujuan untuk "mempersempit" serangan dari alamat IP ke layanan spesifik yang rentan.
 
 ```mermaid

@@ -1,19 +1,18 @@
 # 🛡️ Pertemuan 1: Pengenalan Ethical Hacking & Cybersecurity
 
-**Tujuan:** Memahami konsep dasar ethical hacking dan perannya dalam keamanan siber.
+**Tujuan:** Memahami konsep dasar ethical hacking, landasan hukum di Indonesia, serta menguasai dasar navigasi terminal untuk persiapan penetrasi sistem.
 
 ---
 
 ## 📚 Materi Teori
 
 ### 1. Definisi dan Peran Ethical Hacking
-Ethical Hacking adalah aktivitas mengidentifikasi kelemahan (vulnerabilities) dalam sistem komputer atau jaringan dengan izin dari pemiliknya untuk tujuan meningkatkan keamanan.
-- **Tujuan Utama**: Menemukan celah sebelum dieksploitasi oleh pihak jahat.
-- **Ethical Hacker**: Juga dikenal sebagai "White Hat Hacker".
+Ethical Hacking adalah aktivitas mengidentifikasi kelemahan (vulnerabilities) sistem dengan izin resmi.
+- **Vulnerability**: Celah atau kelemahan pada sistem (misal: password lemah, bug software).
+- **Exploit**: Kode atau teknik yang digunakan untuk memanfaatkan vulnerability.
+- **Payload**: Bagian dari exploit yang melakukan aksi (misal: membuka backdoor, mencuri data).
 
 ### 2. Jenis Hacker
-Seorang hacker dikategorikan berdasarkan niat dan legalitas aksinya:
-
 ```mermaid
 graph TD
     H[Hacker Types] --> W[White Hat]
@@ -29,23 +28,15 @@ graph TD
     style G fill:#fff3cd,stroke:#ffc107
 ```
 
-### 3. Ethical Hacking vs Cybercrime
-| Fitur    | Ethical Hacking             | Cybercrime                 |
-| :------- | :-------------------------- | :------------------------- |
-| Izin     | Memiliki izin resmi (Legal) | Tanpa izin (Ilegal)        |
-| Motivasi | Meningkatkan keamanan       | Keuntungan pribadi/merusak |
-| Metode   | Terstruktur dan dilaporkan  | Tersembunyi dan merugikan  |
+### 3. Etika & Hukum (UU ITE Indonesia)
+Bekerja sebagai Ethical Hacker di Indonesia wajib memahami **UU No. 11 Tahun 2008 (UU ITE)**:
+- **Pasal 30**: Larangan akses ilegal ke sistem orang lain (Hacking).
+- **Pasal 31**: Larangan intersepsi atau penyadapan (Sniffing).
+- **Pasal 32**: Larangan merusak, mengubah, atau memindahkan informasi elektronik.
+> [!IMPORTANT]
+> Selalu miliki **Engagement Letter** (Surat Kontrak) sebelum melakukan testing pada sistem pihak ketiga.
 
-### 4. Hukum & Regulasi
-Penting bagi seorang ethical hacker untuk memahami batasan hukum agar tidak terjerat kasus kriminal:
-- **UU ITE (Indonesia)**: Mengatur tentang akses ilegal dan perusakan data.
-- **GDPR (Global)**: Regulasi perlindungan data pribadi.
-- **ISO 27001**: Standar manajemen keamanan informasi.
-- **NIST Framework**: Kerangka kerja keamanan siber dari AS.
-
-### 5. Tahapan Hacking (Hacking Phases)
-Proses peretasan yang terstruktur mengikuti siklus hidup berikut:
-
+### 4. Tahapan Hacking (Hacking Phases)
 ```mermaid
 graph LR
     A((1. Recon)) --> B((2. Scanning))
@@ -56,56 +47,60 @@ graph LR
     
     style C fill:#f96,stroke:#333
 ```
-
-### 6. Sertifikasi Ethical Hacking
-- **CEH (Certified Ethical Hacker)**: Sertifikasi dasar dari EC-Council.
-- **OSCP (Offensive Security Certified Professional)**: Sertifikasi praktis tingkat lanjut.
-- **PenTest+**: Sertifikasi dari CompTIA.
+1. **Reconnaissance**: Teknik pasif mencari info (WHOIS, Google Dorking).
+2. **Scanning**: Mencari port dan vulnerability (Nmap, Nessus).
+3. **Gaining Access**: Mengeksploitasi celah (Metasploit, SQLMap).
+4. **Maintaining Access**: Memasang akses permanen (Backdoor, Rootkit).
+5. **Covering Tracks**: Menghapus log sistem (Clear logs).
 
 ---
 
-## 🛠️ Hands-on
+## 🛠️ Hands-on: First Steps in Kali
 
-### 1. Instalasi Kali Linux
-Kali Linux adalah distribusi Linux standar industri untuk penetration testing. Anda dapat menginstalnya melalui beberapa metode:
-
-#### A. Virtual Machine (VirtualBox/VMware)
-1. Unduh file ISO/OVA dari [kali.org](https://www.kali.org/get-kali/#kali-virtual-machines).
-2. Impor file ke VirtualBox/VMware.
-3. Konfigurasi Network ke **Bridged** atau **NAT**.
-
-#### B. Docker (Lingkungan Ringan)
+### 1. Update & Alat Dasar
+Setelah menginstal Kali (VM/Docker), lakukan inisialisasi:
 ```bash
-# Pull image terbaru
-docker pull kalilinux/kali-rolling
+# Update daftar paket
+sudo apt update
 
-# Jalankan container secara interaktif
-docker run -it kalilinux/kali-rolling /bin/bash
+# Instal alat pemrosesan teks tambahan
+sudo apt install curl git vim -y
+```
+
+### 2. Lab Terminal: Pipes & Redirection
+Kemampuan mengolah data di terminal adalah "senjata" utama.
+
+#### A. Redirection (Mengalihkan Output)
+- `>` : Membuat file baru atau menimpa (overwrite).
+- `>>`: Menambah ke baris akhir file (append).
+
+```bash
+echo "Daftar Target" > target.txt
+echo "192.168.1.1" >> target.txt
+cat target.txt
 ```
 
 #### C. WSL 2 (Integrasi Windows)
 1. Aktifkan WSL di PowerShell: `wsl --install`.
-2. Instal "Kali Linux" dari Microsoft Store.
+2. Restart komputer Anda.
+3. Instal "Ubuntu" atau "Kali Linux" dari Microsoft Store.
+4. Setelah instalasi selesai, buka dari Start Menu dan buat username/password.
+5. Update sistem: `sudo apt update && sudo apt upgrade -y`.
 
----
+#### B. Pipes (Menghubungkan Perintah)
+Gunakan `|` untuk mengirim output perintah A sebagai input perintah B.
 
-### 2. Simulasi Dasar Terminal
-Lakukan update sistem dan instalasi alat dasar:
 ```bash
-# Update repository
-sudo apt update
+# Mencari string spesifik dalam output banyak
+ls -la /etc | grep "passwd"
 
-# Instal Nmap (Network Mapper)
-sudo apt install nmap -y
-
-# Testing scanning dasar (Gunakan target aman!)
-nmap -F scanme.nmap.org
+# Menghitung jumlah file di folder saat ini
+ls | wc -l
 ```
 
 ---
 
 ## 📖 Referensi
 - **EC-Council**: Certified Ethical Hacker (CEH) v12
-- **NIST**: Cybersecurity Framework
-- **OWASP**: Top 10 Security Project
-- **The Web Application Hacker's Handbook** - Dafydd Stuttard
+- **UU ITE**: [DPR RI - UU ITE](https://www.dpr.go.id/)
+- **Cheat Sheet Linux**: [Linux Journey](https://linuxjourney.com/)
