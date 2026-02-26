@@ -39,6 +39,16 @@ Tool GUI gratis untuk menganalisis isi Hardisk:
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Melakukan investigasi forensik di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Forensik:
+apt update && apt install -y volatility3 sleuthkit
+```
+
 ## 🔍 Bukti Penting dalam Windows
 - **Prefetch**: Mengetahui aplikasi apa saja yang pernah dijalankan.
 - **Registry**: Menyimpan konfigurasi sistem dan jejak malware.

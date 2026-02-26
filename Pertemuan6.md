@@ -55,6 +55,16 @@ Laporan profesional harus mengikuti standar industri. Gunakan template berikut s
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Gunakan Docker untuk audit keamanan web:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Web Hacking:
+apt update && apt install -y sqlmap curl
+```
+
 ## 📖 Referensi
 - **OWASP Official Website**: [owasp.org](https://owasp.org/www-project-top-ten/)
 - **PortSwigger Web Security Academy**: [portswigger.net/web-security](https://portswigger.net/web-security)

@@ -104,6 +104,16 @@ Shodan adalah "Google for devices". Gunakan filter untuk hasil presisi:
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Jalankan praktikum Reconnaissance di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Recon:
+apt update && apt install -y whois dnsutils theharvester
+```
+
 ## 📖 Referensi
 - **OSINT Framework**: [https://osintframework.com/](https://osintframework.com/)
 - **Google Hacking Database (GHDB)**: [Exploit-DB Dorks](https://www.exploit-db.com/google-hacking-database)

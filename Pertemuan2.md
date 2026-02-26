@@ -84,14 +84,15 @@ Wireshark bukan sekadar melihat paket, tapi memahami alur komunikasi.
 
 ---
 
-## 🛡️ Tips Lab Docker### 4. Persistence & Management (Menyimpan Pekerjaan)
+## 🐳 Hands-on: Docker Kali Linux (Persistence)
 Secara default, Docker container bersifat *stateless* (hilang saat ditutup).
 
-#### A. Docker Volumes
-Gunakan **Volumes** untuk menyimpan data ke komputer host secara real-time.
 ```bash
-# Gunakan volume flag (-v)
-docker run -it -v "/path/di/laptop:/work" kalilinux/kali-rolling /bin/bash
+# Jalankan Docker dengan volume flag (-v) untuk menyimpan data ke laptop
+docker run -it --rm -v "/path/di/laptop:/work" kalilinux/kali-rolling /bin/bash
+
+# Di dalam container, instal tools networking:
+apt update && apt install -y nmap iproute2
 ```
 
 #### B. Docker Commit

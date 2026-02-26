@@ -38,6 +38,16 @@ Latih skill Anda di platform berikut yang menyediakan mesin virtual rentan:
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux (Final Challenge Prep)
+Siapkan lingkungan CTF Anda di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal toolset lengkap:
+apt update && apt install -y nmap metasploit-framework sqlmap john aircrack-ng
+```
+
 ## ⚖️ Etika Profesional
 Menjadi hacker hebat tanpa etika hanya akan membawa Anda ke penjara. Selalu ingat:
 1. **Punya Izin**: Jangan pernah mengetes sistem tanpa izin tertulis.

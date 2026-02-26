@@ -44,6 +44,16 @@ creds_all
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Simulasi Red Teaming di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Red Teaming:
+apt update && apt install -y metasploit-framework powershell-empire
+```
+
 ## 🛡️ Red Team Operational Security (OPSEC)
 Seorang Red Teamer harus menghindari deteksi:
 - Gunakan perintah `built-in` (misal: `whoami`, `net user`) daripada mengunggah tools asing.

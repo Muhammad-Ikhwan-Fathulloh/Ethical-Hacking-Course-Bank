@@ -49,7 +49,17 @@ Kita akan membuat kloning situs (misal: Facebook atau LinkedIn) untuk mencuri kr
 
 ---
 
-## 🛡️ Cara Pencegahan
+## � Hands-on: Docker Kali Linux
+Jalankan Social Engineering Toolkit di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal SET:
+apt update && apt install -y set
+```
+
+## �🛡️ Cara Pencegahan
 - **Edukasi Karyawan**: Pelatihan awareness secara rutin.
 - **Multi-Factor Authentication (MFA)**: Kredensial saja tidak cukup jika ada lapisan kedua.
 - **Anti-Spam/Phishing Filters**: Menggunakan AI untuk mendeteksi email mencurigakan.

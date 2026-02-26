@@ -53,6 +53,16 @@ sudo apt install fail2ban -y
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Konfigurasi pertahanan di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Hardening:
+apt update && apt install -y ufw fail2ban
+```
+
 ## 🔍 Blue Team Monitoring
 Gunakan SIEM (Security Information and Event Management) seperti **ELK Stack** (Elasticsearch, Logstash, Kibana) untuk memantau trafik dari seluruh jaringan di satu dashboard pusat.
 

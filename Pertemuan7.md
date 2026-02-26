@@ -65,6 +65,16 @@ curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Jalankan praktikum Password Cracking di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Password Cracking:
+apt update && apt install -y john hydra
+```
+
 ## 📖 Referensi
 - **John the Ripper Official**: [openwall.com/john](https://www.openwall.com/john/)
 - **PayloadsAllTheThings**: [Privilege Escalation Guide](https://github.com/swisskyrepo/PayloadsAllTheThings)

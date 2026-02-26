@@ -64,6 +64,17 @@ aircrack-ng -w /usr/share/wordlists/rockyou.txt wpa_handshake-01.cap
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+*PENTING: Wireless hacking di Docker memerlukan hak akses penuh ke hardware host.*
+
+```bash
+# Jalankan container dengan mode privileged (akses hardware host)
+docker run -it --rm --privileged --net=host kalilinux/kali-rolling /bin/bash
+
+# Instal Aircrack-ng:
+apt update && apt install -y aircrack-ng pciutils usbutils
+```
+
 ## 📖 Referensi
 - **Aircrack-ng Documentation**: [aircrack-ng.org](https://www.aircrack-ng.org/doku.php)
 - **Wi-Fi Alliance**: [WPA3 Security](https://www.wi-fi.org/discover-wi-fi/security)

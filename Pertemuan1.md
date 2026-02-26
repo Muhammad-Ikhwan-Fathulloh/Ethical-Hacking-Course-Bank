@@ -58,13 +58,23 @@ graph LR
 ## 🛠️ Hands-on: First Steps in Kali
 
 ### 1. Update & Alat Dasar
-Setelah menginstal Kali (VM/Docker), lakukan inisialisasi:
+Lakukan inisialisasi pada sistem Kali Linux Anda:
 ```bash
 # Update daftar paket
 sudo apt update
 
 # Instal alat pemrosesan teks tambahan
 sudo apt install curl git vim -y
+```
+
+## 🐳 Hands-on: Docker Kali Linux
+Jika Anda menggunakan Docker, jalankan perintah berikut untuk menyiapkan lab:
+```bash
+# Jalankan container Kali Linux
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Di dalam container, instal tools untuk sesi ini:
+apt update && apt install -y curl git vim
 ```
 
 ### 2. Lab Terminal: Pipes & Redirection

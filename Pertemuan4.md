@@ -82,6 +82,16 @@ enum4linux -a <target_IP>
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Gunakan Docker untuk scanning jaringan (Gunakan `--net=host` agar bisa akses jaringan host):
+```bash
+# Jalankan container dengan akses jaringan host
+docker run -it --rm --net=host kalilinux/kali-rolling /bin/bash
+
+# Instal tools Scanning:
+apt update && apt install -y nmap netcat-traditional nikto
+```
+
 ## 📖 Referensi
 - **Nmap Network Scanning** - Gordon "Fyodor" Lyon
 - **Nmap Official Documentation**: [https://nmap.org/book/](https://nmap.org/book/)

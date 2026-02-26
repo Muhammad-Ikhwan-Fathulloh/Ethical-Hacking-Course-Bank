@@ -60,6 +60,16 @@ RE adalah proses membongkar file binary kembali ke kode assembly atau pseudo-cod
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Menganalisis file binary di dalam container yang terisolasi aman:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal tools Analisis:
+apt update && apt install -y binwalk srecord strings
+```
+
 ## 📖 Referensi
 - **Practical Malware Analysis** - Michael Sikorski
 - **Malware Archaeology**: [malwarearchaeology.com](https://www.malwarearchaeology.com/)

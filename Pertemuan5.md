@@ -68,6 +68,16 @@ sqlmap -u "https://hackable-pentest.vercel.app/api/login" \
 
 ---
 
+## 🐳 Hands-on: Docker Kali Linux
+Jalankan eksploitasi di dalam container:
+```bash
+# Jalankan container
+docker run -it --rm kalilinux/kali-rolling /bin/bash
+
+# Instal Metasploit & SQLMap:
+apt update && apt install -y metasploit-framework sqlmap
+```
+
 ## 📖 Referensi
 - **Metasploit Unleashed**: [Offensive Security](https://www.offensive-security.com/metasploit-unleashed/)
 - **Exploit Database**: [Exploit-DB](https://www.exploit-db.com/)
