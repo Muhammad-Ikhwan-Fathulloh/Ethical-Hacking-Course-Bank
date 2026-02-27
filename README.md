@@ -3,12 +3,6 @@ Bank Materi dan Praktikum Kuliah Ethical Hacking yang Terstruktur dan Komprehens
 
 ---
 
-## **📍 Navigasi Cepat**
-- 🏠 **[Dashboard Materi (HTML)](index.html)**
-- 🚀 **[Energy Booster buat Penulis Materi](https://goakal.com/nocturnailed/energy-booster-buat-penulis-materi)**
-
----
-
 ## **📅 Minggu 1-2: Dasar-Dasar Ethical Hacking**
 
 ### **🛡️ [Pertemuan 1: Pengenalan Ethical Hacking & Cybersecurity](Pertemuan1.md)**
