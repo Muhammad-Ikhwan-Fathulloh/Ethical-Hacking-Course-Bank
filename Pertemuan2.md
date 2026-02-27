@@ -7,22 +7,28 @@
 ## 📚 Materi Teori
 
 ### 1. Networking Protocols Deep Dive
-Memahami bagaimana data bergerak di jaringan:
-- **DHCP (Dynamic Host Configuration Protocol)**: Proses pemberian IP secara otomatis (DORA: Discover, Offer, Request, Acknowledge).
-- **DNS (Domain Name System)**: Buku telepon internet. Penting untuk teknik *DNS Spoofing*.
-- **NAT (Network Address Translation)**: Menyamarkan IP Private ke IP Public. Memahami NAT penting untuk teknik *Port Forwarding*.
+Memahami bagaimana data bergerak di jaringan adalah kunci utama seorang hacker.
+
+| Protokol | Deskripsi                                          | Peran dalam Hacking                                 |
+| :------- | :------------------------------------------------- | :-------------------------------------------------- |
+| **DHCP** | Memberikan IP secara otomatis via proses **DORA**. | Bisa dieksploitasi via *DHCP Starvation*.           |
+| **DNS**  | Resolusi nama domain ke IP address.                | Target utama untuk *DNS Poisoning/Spoofing*.        |
+| **NAT**  | Translasi IP Private ke Public.                    | Penting dipahami untuk melakukan *Port Forwarding*. |
+
+> [!TIP]
+> **DORA Process**: Discover (Cari server), Offer (Server tawari IP), Request (Klien minta IP), Acknowledge (Server konfirmasi).
 
 ### 2. Model Jaringan (OSI vs TCP/IP)
 ```mermaid
 graph LR
-    subgraph TCP_IP
+    subgraph TCP_IP["TCP/IP Model"]
     T1[Application]
     T2[Transport]
     T3[Internet]
     T4[Network Access]
     end
     
-    subgraph OSI
+    subgraph OSI["OSI Model (7 Layers)"]
     O1[Application]
     O2[Presentation]
     O3[Session]
@@ -38,11 +44,34 @@ graph LR
     O6 & O7 --- T4
 ```
 
+| Layer OSI     | Fungsi Utama              | Contoh Protokol     |
+| :------------ | :------------------------ | :------------------ |
+| **Layer 7-5** | Interaksi User & Enkripsi | HTTP, FTP, DNS, SSL |
+| **Layer 4**   | Pengiriman Antar-Host     | TCP, UDP            |
+| **Layer 3**   | Routing & IP Addressing   | IP, ICMP            |
+| **Layer 2-1** | Transmisi Fisik & MAC     | Ethernet, Wi-Fi     |
+
 ### 3. Linux Internals: Process & Package Management
 - **Process Management**: Setiap aplikasi berjalan sebagai "Process ID" (PID).
 - **Package Management**: Kali menggunakan `apt` (Advanced Package Tool).
   - `apt search <nama>`: Mencari alat.
   - `apt install <nama>`: Memasang alat.
+
+### 4. Essential Kali Linux Commands
+Sebagai Ethical Hacker, Anda harus hafal perintah dasar ini untuk efisiensi di lapangan.
+
+| Kategori       | Perintah         | Deskripsi                                         |
+| :------------- | :--------------- | :------------------------------------------------ |
+| **System**     | `whoami` / `id`  | Mengetahui user aktif & hak akses.                |
+|                | `uname -a`       | Informasi Kernel & Arsitektur OS.                 |
+|                | `hostname -I`    | Menampilkan IP internal secara cepat.             |
+| **Navigation** | `pwd`            | Menampilkan direktori saat ini.                   |
+|                | `ls -la`         | List semua file (termasuk yang tersembunyi).      |
+| **File Ops**   | `cp -r` / `mv`   | Copy (rekursif) atau Pindah/Rename file.          |
+|                | `rm -rf`         | Hapus file/folder secara paksa (Hati-hati!).      |
+|                | `cat` / `less`   | Melihat isi file (cat: semua, less: per halaman). |
+| **Networking** | `ip addr`        | Konfigurasi Interface Jaringan.                   |
+|                | `netstat -tunlp` | Melihat port yang sedang terbuka/listening.       |
 
 ---
 
@@ -73,14 +102,21 @@ jobs
 ```
 
 ### 3. Lab Wireshark: Analisis Handshake
-Wireshark bukan sekadar melihat paket, tapi memahami alur komunikasi.
+Wireshark membantu kita melihat apa yang sebenarnya terjadi "di balik layar" kabel jaringan.
 
-**Skenario: Sniffing Login HTTP**
-1. Jalankan Wireshark pada interface aktif.
-2. Gunakan filter: `http.request.method == "POST"`.
-3. Cari paket yang berisi path seperti `/login` atau `/auth`.
-4. Klik kanan -> **Follow -> TCP Stream**.
-5. **Analisis**: Temukan parameter `user` dan `pass` dalam teks terbaca. Di sinilah bahayanya protokol tidak aman (HTTP).
+**Skenario: Sniffing Login HTTP (Insecure)**
+1.  **Pilih Interface**: Buka Wireshark, pilih interface aktif (misal: eth0 atau Wi-Fi).
+2.  **Mulai Sniffing**: Klik ikon sirip hiu biru untuk mulai menangkap paket.
+3.  **Terapkan Filter**: Ketik filter berikut untuk mencari trafik POST (biasanya berisi login):
+    ```text
+    http.request.method == "POST"
+    ```
+4.  **Temukan Target**: Cari paket yang mengarah ke path `/login`.
+5.  **Follow Stream**: Klik kanan pada paket tersebut -> **Follow** -> **TCP Stream**.
+6.  **Analisis Akhir**: Perhatikan teks berwarna merah/biru. Anda akan melihat `username` dan `password` dalam bentuk teks biasa (jika situs tidak menggunakan HTTPS).
+
+> [!WARNING]
+> Selalu gunakan HTTPS untuk melindungi data sensitif dari serangan sniffing seperti ini.
 
 ---
 
@@ -102,32 +138,50 @@ Gunakan Docker untuk menjalankan praktikum dengan fitur penyimpanan data (Persis
     ```
 5.  **Eksplorasi**: Pindah ke folder `/work` untuk mulai menyimpan file praktikum Anda.
 
-#### B. Docker Commit
-Jika Anda ingin menyimpan seluruh perubahan lingkungan (termasuk tools yang diinstal) ke image baru:
-```bash
-# Di terminal host:
-docker commit <container_id> kali-custom
-```
+#### B. Persistensi vs Custom Image (Docker Commit)
+Jika Anda telah menginstal banyak tools dan ingin menyimpannya menjadi sebuah image baru:
+
+1.  **Cari ID Container**: Di terminal host, jalankan `docker ps`.
+2.  **Lakukan Commit**:
+    ```bash
+    # Format: docker commit <container_id> <nama_image_baru>
+    docker commit <container_id> kali-custom-lengkap
+    ```
+3.  **Gunakan Image Baru**: Selanjutnya Anda bisa menjalankan `kali-custom-lengkap` tanpa perlu menginstal ulang tools.
 
 ### 5. Membuat Script Bash Sederhana
 Otomasi tugas dasar menggunakan Bash script:
 ```bash
-# Buat file script
+# Buat file script baru
 nano myscript.sh
 
-# Isi dengan:
-# #!/bin/bash
-# echo "Hello, Ethical Hacker!"
-# uname -a
+# Isi dengan baris berikut:
+# #!/bin/bash            <- Shebang: Menentukan shell yang digunakan
+# echo "Hello, Hacker!"  <- Perintah untuk mencetak teks
+# uname -a               <- Menampilkan informasi sistem (Kernel version)
 
-# Berikan izin eksekusi dan jalankan
+# Berikan izin eksekusi (Executable)
 chmod +x myscript.sh
+
+# Jalankan script Anda
 ./myscript.sh
 ```
 
----
+## 📝 Latihan Mandiri: "The Digital Scout"
+Selesaikan tantangan berikut untuk menguji pemahaman Anda tentang navigasi Linux dan networking:
 
-## 📖 Referensi
+1.  **Struktur Folder**: Buat folder bernama `EH-Lab` dan di dalamnya buat dua sub-folder: `reports` dan `targets`.
+2.  **Manajemen File**: 
+    - Buat file di dalam folder `targets` bernama `ips.txt` berisi daftar IP: `192.168.1.1`, `192.168.1.5`, `10.0.0.1`.
+    - Gunakan `grep` untuk menyaring IP yang berawalan `192` lalu simpan hasilnya ke `reports/local_targets.txt`.
+3.  **Proses & Background**: Jalankan perintah `sleep 500 &` (jalan di background), temukan **PID**-nya menggunakan `ps aux`, lalu matikan proses tersebut menggunakan `kill`.
+4.  **Otomasi Sederhana**: Buatlah script bash bernama `netinfo.sh` di folder `EH-Lab` yang melakukan hal berikut:
+    - Menampilkan teks: "Memeriksa konektivitas..."
+    - Menampilkan IP Address container/host saat ini.
+    - Menampilkan daftar port yang sedang *listening*.
+5.  **Verifikasi**: Pastikan script tersebut bisa dijalankan dengan `./netinfo.sh`.
+
+---
 - **The Linux Command Line** - William Shotts
 - **Nmap Network Scanning** - Gordon "Fyodor" Lyon
 - **NIST**: Guide to Enterprise Telework, Remote Access, and BYOD security.
