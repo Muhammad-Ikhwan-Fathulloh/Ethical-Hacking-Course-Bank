@@ -104,15 +104,23 @@ Shodan adalah "Google for devices". Gunakan filter untuk hasil presisi:
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Jalankan praktikum Reconnaissance di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Jalankan praktikum Reconnaissance dengan langkah berikut:
 
-# Instal tools Recon:
-apt update && apt install -y whois dnsutils theharvester
-```
+1.  **Persiapan**: Pastikan koneksi internet stabil (Docker memerlukan akses ke repository Kali).
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal alat Reconnaissance (OSINT):
+    ```bash
+    apt update && apt install -y whois dnsutils theharvester
+    ```
+4.  **Verifikasi**: Cek apakah `whois` sudah siap:
+    ```bash
+    whois --version
+    ```
+5.  **Eksplorasi**: Gunakan `theHarvester -d google.com -l 500 -b google` untuk mulai mencari data.
 
 ## 📖 Referensi
 - **OSINT Framework**: [https://osintframework.com/](https://osintframework.com/)

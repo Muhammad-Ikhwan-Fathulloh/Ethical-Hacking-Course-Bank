@@ -53,15 +53,23 @@ sudo apt install fail2ban -y
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Konfigurasi pertahanan di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Mengonfigurasi pertahanan dan memori hardening di dalam container:
 
-# Instal tools Hardening:
-apt update && apt install -y ufw fail2ban
-```
+1.  **Persiapan**: Pahami aturan firewall yang ingin diterapkan (SSH, HTTP, dll).
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal tools Blue Team:
+    ```bash
+    apt update && apt install -y ufw fail2ban
+    ```
+4.  **Verifikasi**: Cek status awal UFW:
+    ```bash
+    ufw status
+    ```
+5.  **Eksplorasi**: Cobalah mengunci semua port kecuali SSH (`ufw allow 22`) dan lihat perubahannya.
 
 ## 🔍 Blue Team Monitoring
 Gunakan SIEM (Security Information and Event Management) seperti **ELK Stack** (Elasticsearch, Logstash, Kibana) untuk memantau trafik dari seluruh jaringan di satu dashboard pusat.

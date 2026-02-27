@@ -84,16 +84,23 @@ Wireshark bukan sekadar melihat paket, tapi memahami alur komunikasi.
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux (Persistence)
-Secara default, Docker container bersifat *stateless* (hilang saat ditutup).
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Gunakan Docker untuk menjalankan praktikum dengan fitur penyimpanan data (Persistence):
 
-```bash
-# Jalankan Docker dengan volume flag (-v) untuk menyimpan data ke laptop
-docker run -it --rm -v "/path/di/laptop:/work" kalilinux/kali-rolling /bin/bash
-
-# Di dalam container, instal tools networking:
-apt update && apt install -y nmap iproute2
-```
+1.  **Persiapan**: Siapkan folder kosong di laptop Anda untuk menyimpan hasil lab (misal: `C:\Lab-EH`).
+2.  **Jalankan Container**: Gunakan **Volume** agar file tidak hilang:
+    ```bash
+    docker run -it --rm -v "C:\Lab-EH:/work" kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal alat networking dasar:
+    ```bash
+    apt update && apt install -y nmap iproute2
+    ```
+4.  **Verifikasi**: Cek ip address di dalam container:
+    ```bash
+    ip addr show
+    ```
+5.  **Eksplorasi**: Pindah ke folder `/work` untuk mulai menyimpan file praktikum Anda.
 
 #### B. Docker Commit
 Jika Anda ingin menyimpan seluruh perubahan lingkungan (termasuk tools yang diinstal) ke image baru:

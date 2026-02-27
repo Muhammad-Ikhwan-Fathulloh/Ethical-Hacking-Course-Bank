@@ -39,15 +39,23 @@ Tool GUI gratis untuk menganalisis isi Hardisk:
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Melakukan investigasi forensik di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Melakukan investigasi forensik digital di lingkungan yang bersih:
 
-# Instal tools Forensik:
-apt update && apt install -y volatility3 sleuthkit
-```
+1.  **Persiapan**: Siapkan image memory (`.raw` atau `.mem`) atau disk image yang akan diinvestigasi.
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal tools forensik utama:
+    ```bash
+    apt update && apt install -y volatility3 sleuthkit
+    ```
+4.  **Verifikasi**: Jalankan Volatility3 untuk melihat bantuan perintah:
+    ```bash
+    volaf --help
+    ```
+5.  **Eksplorasi**: Gunakan `volaf -f <file_memory> windows.pslist` untuk menganalisis proses yang berjalan pada dump tersebut.
 
 ## 🔍 Bukti Penting dalam Windows
 - **Prefetch**: Mengetahui aplikasi apa saja yang pernah dijalankan.

@@ -65,15 +65,23 @@ curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Jalankan praktikum Password Cracking di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Jalankan praktikum Password Cracking dengan langkah profesional:
 
-# Instal tools Password Cracking:
-apt update && apt install -y john hydra
-```
+1.  **Persiapan**: Siapkan file hash atau wordlist yang ingin diuji.
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal alat cracking populer:
+    ```bash
+    apt update && apt install -y john hydra
+    ```
+4.  **Verifikasi**: Cek apakah John the Ripper mengenali format hash:
+    ```bash
+    john --list=formats
+    ```
+5.  **Eksplorasi**: Cobalah melakukan brute force pada service simulasi lokal atau file hash percobaan.
 
 ## 📖 Referensi
 - **John the Ripper Official**: [openwall.com/john](https://www.openwall.com/john/)

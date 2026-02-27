@@ -67,15 +67,24 @@ sudo apt update
 sudo apt install curl git vim -y
 ```
 
-## 🐳 Hands-on: Docker Kali Linux
-Jika Anda menggunakan Docker, jalankan perintah berikut untuk menyiapkan lab:
-```bash
-# Jalankan container Kali Linux
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Ikuti langkah-langkah berikut untuk menyiapkan lingkungan lab menggunakan Docker:
 
-# Di dalam container, instal tools untuk sesi ini:
-apt update && apt install -y curl git vim
-```
+1.  **Persiapan**: Pastikan aplikasi Docker Desktop (Windows) atau Docker Engine (Linux) sudah berjalan.
+2.  **Jalankan Container**: Buka terminal/PowerShell dan jalankan perintah:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+    *Flags: `-it` untuk terminal interaktif, `--rm` untuk menghapus container otomatis saat exit.*
+3.  **Update & Install**: Di dalam shell Kali, instal alat dasar:
+    ```bash
+    apt update && apt install -y curl git vim
+    ```
+4.  **Verifikasi**: Pastikan alat terinstal dengan benar:
+    ```bash
+    curl --version
+    ```
+5.  **Eksplorasi**: Sekarang Anda siap melanjutkan ke **Lab Terminal (Pipes & Redirection)** di bawah.
 
 ### 2. Lab Terminal: Pipes & Redirection
 Kemampuan mengolah data di terminal adalah "senjata" utama.

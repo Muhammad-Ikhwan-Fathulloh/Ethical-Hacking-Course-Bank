@@ -64,16 +64,23 @@ aircrack-ng -w /usr/share/wordlists/rockyou.txt wpa_handshake-01.cap
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-*PENTING: Wireless hacking di Docker memerlukan hak akses penuh ke hardware host.*
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+*PENTING: Wireless hacking di Docker memerlukan akses langsung ke perangkat keras host.*
 
-```bash
-# Jalankan container dengan mode privileged (akses hardware host)
-docker run -it --rm --privileged --net=host kalilinux/kali-rolling /bin/bash
-
-# Instal Aircrack-ng:
-apt update && apt install -y aircrack-ng pciutils usbutils
-```
+1.  **Persiapan**: Hubungkan USB Wireless Adapter yang mendukung monitor mode.
+2.  **Jalankan Container**: Gunakan flag `--privileged` dan `--net=host`:
+    ```bash
+    docker run -it --rm --privileged --net=host kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal suite alat nirkabel:
+    ```bash
+    apt update && apt install -y aircrack-ng pciutils usbutils
+    ```
+4.  **Verifikasi**: Pastikan adapter terdeteksi di dalam Docker:
+    ```bash
+    iwconfig
+    ```
+5.  **Eksplorasi**: Jalankan `airmon-ng start <interface>` untuk memulai proses monitoring.
 
 ## 📖 Referensi
 - **Aircrack-ng Documentation**: [aircrack-ng.org](https://www.aircrack-ng.org/doku.php)

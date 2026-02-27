@@ -82,15 +82,23 @@ enum4linux -a <target_IP>
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Gunakan Docker untuk scanning jaringan (Gunakan `--net=host` agar bisa akses jaringan host):
-```bash
-# Jalankan container dengan akses jaringan host
-docker run -it --rm --net=host kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Ikuti langkah ini untuk melakukan scanning jaringan host dari dalam Docker:
 
-# Instal tools Scanning:
-apt update && apt install -y nmap netcat-traditional nikto
-```
+1.  **Persiapan**: Gunakan flag `--net=host` agar Docker bisa mengakses interface jaringan asli komputer Anda.
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm --net=host kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal paket Nmap dan alat scanning lainnya:
+    ```bash
+    apt update && apt install -y nmap netcat-traditional nikto
+    ```
+4.  **Verifikasi**: Cek ketersediaan Nmap:
+    ```bash
+    nmap --version
+    ```
+5.  **Eksplorasi**: Mulailah dengan melakukan scan pada IP gateway Anda (`nmap <gateway_ip>`).
 
 ## 📖 Referensi
 - **Nmap Network Scanning** - Gordon "Fyodor" Lyon

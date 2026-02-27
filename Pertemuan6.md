@@ -55,15 +55,23 @@ Laporan profesional harus mengikuti standar industri. Gunakan template berikut s
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Gunakan Docker untuk audit keamanan web:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Lakukan audit keamanan aplikasi web dengan langkah-langkah berikut:
 
-# Instal tools Web Hacking:
-apt update && apt install -y sqlmap curl
-```
+1.  **Persiapan**: Siapkan URL target (misal: `https://hackable-pentest.vercel.app`).
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal tools pendukung audit web:
+    ```bash
+    apt update && apt install -y sqlmap curl
+    ```
+4.  **Verifikasi**: Tes koneksi ke target dari dalam container:
+    ```bash
+    curl -I https://hackable-pentest.vercel.app
+    ```
+5.  **Eksplorasi**: Jalankan `sqlmap -u "<URL>"` untuk mulai menguji kerentanan SQL Injection.
 
 ## 📖 Referensi
 - **OWASP Official Website**: [owasp.org](https://owasp.org/www-project-top-ten/)

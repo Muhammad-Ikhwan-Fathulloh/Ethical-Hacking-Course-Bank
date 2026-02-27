@@ -49,17 +49,25 @@ Kita akan membuat kloning situs (misal: Facebook atau LinkedIn) untuk mencuri kr
 
 ---
 
-## � Hands-on: Docker Kali Linux
-Jalankan Social Engineering Toolkit di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Jalankan Social Engineering Toolkit (SET) dengan aman di dalam container:
 
-# Instal SET:
-apt update && apt install -y set
-```
+1.  **Persiapan**: Karena SET melakukan kloning website, pastikan kontainer memiliki akses internet.
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal framework SET:
+    ```bash
+    apt update && apt install -y set
+    ```
+4.  **Verifikasi**: Jalankan SET untuk pertama kali (pilih "no" untuk update tool):
+    ```bash
+    setoolkit
+    ```
+5.  **Eksplorasi**: Ikuti panduan **Credential Harvester** di atas untuk mensimulasikan login page palsu.
 
-## �🛡️ Cara Pencegahan
+## 🛡️ Cara Pencegahan
 - **Edukasi Karyawan**: Pelatihan awareness secara rutin.
 - **Multi-Factor Authentication (MFA)**: Kredensial saja tidak cukup jika ada lapisan kedua.
 - **Anti-Spam/Phishing Filters**: Menggunakan AI untuk mendeteksi email mencurigakan.

@@ -44,15 +44,23 @@ creds_all
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux
-Simulasi Red Teaming di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab
+Simulasi operasi Red Teaming di dalam infrastruktur perusahaan:
 
-# Instal tools Red Teaming:
-apt update && apt install -y metasploit-framework powershell-empire
-```
+1.  **Persiapan**: Pastikan Anda memahami konsep lateral movement dan pivoting.
+2.  **Jalankan Container**:
+    ```bash
+    docker run -it --rm kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal Metasploit dan framework post-exploitation lainnya:
+    ```bash
+    apt update && apt install -y metasploit-framework powershell-empire
+    ```
+4.  **Verifikasi**: Cek ketersediaan modul post-exploitation di msfconsole:
+    ```bash
+    msfconsole -q -x "search type:post"
+    ```
+5.  **Eksplorasi**: Cobalah teknik **Pivoting** yang dijelaskan di atas untuk mengakses segmen jaringan yang berbeda.
 
 ## 🛡️ Red Team Operational Security (OPSEC)
 Seorang Red Teamer harus menghindari deteksi:

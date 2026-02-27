@@ -38,15 +38,20 @@ Latih skill Anda di platform berikut yang menyediakan mesin virtual rentan:
 
 ---
 
-## 🐳 Hands-on: Docker Kali Linux (Final Challenge Prep)
-Siapkan lingkungan CTF Anda di dalam container:
-```bash
-# Jalankan container
-docker run -it --rm kalilinux/kali-rolling /bin/bash
+## 🐳 Step-by-Step: Docker Kali Linux Lab (Final Challenge Prep)
+Siapkan lingkungan CTF Anda secara instan di dalam container:
 
-# Instal toolset lengkap:
-apt update && apt install -y nmap metasploit-framework sqlmap john aircrack-ng
-```
+1.  **Persiapan**: Pastikan komputer memiliki koneksi internet yang kuat untuk mengunduh banyak paket.
+2.  **Jalankan Container**: Gunakan mode host agar semua alat networking berjalan lancar:
+    ```bash
+    docker run -it --rm --net=host kalilinux/kali-rolling /bin/bash
+    ```
+3.  **Update & Install**: Instal toolset lengkap untuk berbagai kategori CTF:
+    ```bash
+    apt update && apt install -y nmap metasploit-framework sqlmap john aircrack-ng
+    ```
+4.  **Verifikasi**: Tes tool favorit Anda (misal `nmap` atau `sqlmap`) untuk memastikan siap tempur.
+5.  **Eksplorasi**: Gunakan lingkungan ini untuk menyelesaikan tantangan di platform seperti **TryHackMe** atau **HackTheBox**.
 
 ## ⚖️ Etika Profesional
 Menjadi hacker hebat tanpa etika hanya akan membawa Anda ke penjara. Selalu ingat:
